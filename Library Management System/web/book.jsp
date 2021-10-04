@@ -9,26 +9,46 @@
         <%
             
             
-            
+            String Rid="";
             String uid="";
             String bid="";
+            String datei="";
+            String datere="";
+            String datera="";
+            String remarks="";
+            String fine="";
             
-            
-                
-                    
+                try
+                {
+                    Rid=request.getParameter("recno");
                     uid =request.getParameter("userId");
                     bid =request.getParameter("bookId");
-                    
+                    datei = request.getParameter("dateI");
+                    datere = request.getParameter("dateR");
+                    datera = request.getParameter("dateA");
+                    remarks = request.getParameter("rmks");
+                    fine = request.getParameter("fin");
                     Connection connection =DbConfig.getConnection();
-                    PreparedStatement statement = connection.prepareStatement("insert into bookissue values(?,?)");
+                    PreparedStatement statement = connection.prepareStatement("insert into BookIssue values(?,?,?,to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?)");
                     
-                    statement.setString(1, uid);
-                    statement.setString(2, bid);
-                    
+                    statement.setString(1,Rid);
+                    statement.setString(2, uid);
+                    statement.setString(3, bid);
+                    statement.setString(4, datei);
+                    statement.setString(5, datere);
+                    statement.setString(6, datera);
+                    statement.setString(7, remarks);
+                    statement.setString(8, fine);
                     
                     int n = statement.executeUpdate();
                     
+                }
                 
+                catch(Exception ex)
+                {
+                    System.out.println(ex);
+                    
+                }
                System.out.println(uid+"***********");     
                     
                     
@@ -110,7 +130,10 @@ background-color:#022140 ;
 		<div class="col-md-2">
 		</div>
 		<div class ="col-md-4">
-			
+                    <div class="form-group">
+			Receipt Id.<br>
+                        <input type="text" class="input form-control" name="recno" id="recno"  placeholder="Enter receipt Id">
+			</div>
 			
 			
 			
@@ -118,7 +141,7 @@ background-color:#022140 ;
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
 			User Id.<br>
-                        <input type="text" class="input form-control" id="userId" value="" placeholder="Enter User Id">
+                        <input type="text" class="input form-control" id="userId" name="userId"  placeholder="Enter User Id">
 			</div>
 			
 		</div>
@@ -133,13 +156,32 @@ background-color:#022140 ;
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
 			Book Id.<br>
-			<input type="text" class="input form-control "  id="bookId" placeholder="Enter Book Id">
+			<input type="text" class="input form-control " name="bookId"  id="bookId" placeholder="Enter Book Id">
 			</div>
 		</div>
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
 			Date of Issue<br>
-			<input type="date" name="dateI" class="input form-control " value="" id="dateI" placeholder="Enter Date of Issue" >
+			<input type="date" name="dateI" class="input form-control " name="dateI" value="" id="dateI" placeholder="Enter Date of Issue" >
+			</div>
+		</div>
+		<div class="col-md-2">
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class ="col-md-4 form-group">
+			<div class="form-group">
+			Expected Date of Return<br>
+			<input type="date" value="" class="input form-control " name="dateR" id="dateR" placeholder="Enter Expected Date of Return">
+			</div>
+		</div>
+		<div class ="col-md-4 form-group">
+			<div class="form-group">
+			Actual Date of Return<br>
+			<input type="date" value="" class="input form-control "name="dateA" id="dateA" >
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -147,6 +189,26 @@ background-color:#022140 ;
 	</div>
 	
 	
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class ="col-md-4 form-group">
+			<div class="form-group">
+				Remark<br>
+                                <input type="text" class="input form-control" name="rmks" id="rmks" placeholder="Enter Remark if Any">
+			</div>
+		</div>
+		<div class ="col-md-4 form-group">
+			<div class="form-group">
+                        
+			Fine<br>
+                        <input type="number" class="input form-control" id="fin" name="fin" placeholder="Enter Fine">
+                        
+			</div>
+		</div>
+		<div class="col-md-2">
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-4 form-group">
 		
@@ -171,7 +233,7 @@ background-color:#022140 ;
 	
 	
 	
-                        
+	
 </div>
 </form>
 </body>
