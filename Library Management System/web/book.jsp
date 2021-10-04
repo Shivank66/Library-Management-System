@@ -1,3 +1,41 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dbpackage.DbConfig"%>
+<%@page import = "java.sql.PreparedStatement"%>
+<%@page import = "java.sql.Connection"%>
+<%@page import = "java.util.Date"%>
+
+
+
+        <%
+            
+            
+            
+            String uid="";
+            String bid="";
+            
+            
+                
+                    
+                    uid =request.getParameter("userId");
+                    bid =request.getParameter("bookId");
+                    
+                    Connection connection =DbConfig.getConnection();
+                    PreparedStatement statement = connection.prepareStatement("insert into bookissue values(?,?)");
+                    
+                    statement.setString(1, uid);
+                    statement.setString(2, bid);
+                    
+                    
+                    int n = statement.executeUpdate();
+                    
+                
+               System.out.println(uid+"***********");     
+                    
+                    
+                
+            
+            
+        %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +62,8 @@ border-style:solid;
 border-radius:10px;
 }*/
 body{
-background-color:#022140 ;<!--#1EA1A1;-->
+background-color:#022140 ;
+
 }
 .button {
   display: inline-block;
@@ -52,7 +91,7 @@ background-color:#022140 ;<!--#1EA1A1;-->
 </style>
 </head>
 <body >
-<form action="test.jsp" method="post">
+<form action="book.jsp" method="post">
 <div class="container cont ">
 	<div class="row">
 		<div class="col-md-3">
@@ -73,16 +112,13 @@ background-color:#022140 ;<!--#1EA1A1;-->
 		<div class ="col-md-4">
 			
 			
-			<div class="form-group">
-			Receipt no.<br>
-			<input type="text" class="input form-control " placeholder="Enter Receipt number" id="RecNo" >
-			</div>
+			
 			
 		</div>
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
 			User Id.<br>
-			<input type="text" class="input form-control" id="userId" placeholder="Enter User Id">
+                        <input type="text" class="input form-control" id="userId" value="" placeholder="Enter User Id">
 			</div>
 			
 		</div>
@@ -103,26 +139,7 @@ background-color:#022140 ;<!--#1EA1A1;-->
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
 			Date of Issue<br>
-			<input type="date" class="input form-control " id="dateI" placeholder="Enter Date of Issue" >
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class ="col-md-4 form-group">
-			<div class="form-group">
-			Expected Date of Return<br>
-			<input type="date" class="input form-control " id="dateR" placeholder="Enter Expected Date of Return">
-			</div>
-		</div>
-		<div class ="col-md-4 form-group">
-			<div class="form-group">
-			Actual Date of Return<br>
-			<input type="date" class="input form-control " id="dateA" >
+			<input type="date" name="dateI" class="input form-control " value="" id="dateI" placeholder="Enter Date of Issue" >
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -130,26 +147,6 @@ background-color:#022140 ;<!--#1EA1A1;-->
 	</div>
 	
 	
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class ="col-md-4 form-group">
-			<div class="form-group">
-				Remark<br>
-                                <input type="text" class="input form-control" id="rmks" placeholder="Enter Remark if Any">
-			</div>
-		</div>
-		<div class ="col-md-4 form-group">
-			<div class="form-group">
-                        
-			Fine<br>
-                        <input type="number" class="input form-control" id="fine" placeholder="Enter Fine">
-                        
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
 	<div class="row">
 		<div class="col-md-4 form-group">
 		
@@ -166,12 +163,15 @@ background-color:#022140 ;<!--#1EA1A1;-->
 		
 		</div>
 	</div>
+        <div class="row">
+            <input type ="hidden" name="check">
+        </div>
 	
 
 	
 	
 	
-	
+                        
 </div>
 </form>
 </body>
