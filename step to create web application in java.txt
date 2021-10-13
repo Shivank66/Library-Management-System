@@ -1,0 +1,24 @@
+1.web application in netbeans
+2.Make a java class with package dbpackage and Add jar file (if some error happens make new package named dbpackage create class java there )
+  something similar to below:-
+	
+package dbpackage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import oracle.jdbc.OracleDriver;
+
+public class DbConfig {
+public static Connection getConnection() throws SQLException
+{
+    DriverManager.registerDriver(new OracleDriver());
+    String user="library",password="library",url="jdbc:oracle:thin:@localhost:1521:xe";
+    Connection connection=DriverManager.getConnection(url, user, password);
+    return connection;
+}
+}
+3. create jsp file 
+4. create html file enter form action atribute as "filename.jsp" and method="post"
+
+
