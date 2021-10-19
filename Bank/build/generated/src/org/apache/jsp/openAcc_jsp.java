@@ -44,40 +44,56 @@ public final class openAcc_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
 
     String nam="";
     int amt=0;
+    String check=request.getParameter("check");
+    boolean isEmpty = true;
+    if(check!=null)
+        isEmpty=false;
+    if(!isEmpty)
+    {
+     
     nam=request.getParameter("Name");
     amt=Integer.parseInt(request.getParameter("amount"));
     Connection connection=Dbconfig.getconnection();
     PreparedStatement statement=connection.prepareStatement("insert into bank values(next.nextval,?,?)");
     statement.setString(1,nam);
-    statement.setString(2,amt+"");
+    statement.setInt(2,amt);
     int n=statement.executeUpdate();
+    }
     
     
     
     
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("    \n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("       </body>     \n");
-      out.write("    \n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("    \r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>JSP Page</title>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <form action=\"openAcc.jsp\" method=\"post\">\r\n");
+      out.write("        <label for=\"Name\">Your Name:  </label>\r\n");
+      out.write("        <input type=\"text\" id=\"Name\" name=\"Name\" placeholder=\"Name\">\r\n");
+      out.write("        <label for=\"amount\">Initial deposit: </label>\r\n");
+      out.write("        <input type=\"number\" name=\"amount\" id=\"amount\" placeholder=\"amount\">\r\n");
+      out.write("        <input type=\"submit\" value=\"submit\">\r\n");
+      out.write("        <input type=\"hidden\" name=\"check\" id=\"check\">    \r\n");
+      out.write("        </form>\r\n");
+      out.write("       </body>     \r\n");
+      out.write("    \r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

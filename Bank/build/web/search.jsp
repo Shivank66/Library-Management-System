@@ -12,7 +12,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%
     int account=0;
-    
+    int amount=0;
+    String name="";
     
     String result="",butt="";
     String check=request.getParameter("check");
@@ -23,18 +24,52 @@
     {
     butt=request.getParameter("cmd");
     
-    if(butt.equals("btn"))
+    if(butt.equals("search"))
     {
-        try{
+        
+    try{
     account=Integer.parseInt(request.getParameter("acc"));
     Account a=new Account(account);
-    result=""+a;
+    result= " "+a;
     }
     catch(Exception ex){
-        result="exception";
+        result= "abhi exception";
         System.out.println(ex);
         
-    }}}
+    }}
+    
+    if(butt.equals("insert"))
+    {
+        
+    try{
+    name=""+request.getParameter("name");
+    amount=Integer.parseInt(request.getParameter("amount"));
+    Account a=new Account(name, amount);
+    result= "!!!Account Created Successfully!!! "+a;
+    }
+    catch(Exception ex){
+        result= " exception";
+        System.out.println(ex);
+        
+    }}
+    
+    if(butt.equals("deposite"))
+    {
+        
+    try{
+    account=Integer.parseInt(request.getParameter("acc"));
+    amount=Integer.parseInt(request.getParameter("amount"));
+    Account a=new Account(account, amount);
+    result= "!!!Depsited Created Successfully!!! <br>"+a;
+    }
+    catch(Exception ex){
+        result= " exception";
+        System.out.println(ex);
+        
+    }}
+    
+    
+    }
     //System.out.println(a);
    
     
@@ -53,30 +88,31 @@
     </head>
     <body>
         
-        <form action="openAcc.jsp" method="post">
+        <form action="search.jsp" method="post">
         <label for="Name">Your Name:  </label>
-        <input type="text" id="Name" name="Name" placeholder="Name">
+        <input type="text" id="name" name="name" placeholder="Name">
         <label for="amount">Initial deposit: </label>
         <input type="number" name="amount" id="amount" placeholder="amount">
-        <input type="submit" value="submit">
-      </form>
-`
         
-        <form action="search.jsp" method="post">
+        <button type="submit" value="insert" name="cmd" id="cmd">Create account</button>    
+        <br><br><br>
             <input type="hidden" name="check">
         <label for="acc">Account No.</label>
         <input type="number" id="acc" name="acc" placeholder="Account No.">
         
         
-        <button type="submit" value="btn" name="cmd" id="cmd">Submit</button>
+        <button type="submit" value="search" name="cmd" id="cmd">Balance Check</button>
+        <br>
+        <button type="submit" value="deposite" name="cmd" id="cmd">Deposit</button>
         <div> 
             <br>
             <h1>Aaja bhai</h1>
             <%=result%>
+            
         </div>    
 
       </form>
         
     </body>
 </html>
-
+    

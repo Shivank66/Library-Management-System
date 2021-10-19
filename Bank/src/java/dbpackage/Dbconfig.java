@@ -24,7 +24,7 @@ public class Dbconfig {
     public static Connection getconnection() throws SQLException    {
     DriverManager.registerDriver(new OracleDriver());
     String user="system";
-    String password="Wrong";
+    String password="abhi";
     String url="jdbc:oracle:thin:@localhost:1521:xe";
     Connection connection=DriverManager.getConnection(url,user,password);
     return connection;
