@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import validationspackage.BookNotFoundException;
 import java.sql.ResultSet;
+import javax.servlet.http.HttpSession;
 
 public class Book {
     
@@ -21,8 +22,8 @@ private String bookname,publisher,author,edition;
         this.edition = edition;
     }
 
-    public Book(int bookid) throws BookNotFoundException, SQLException {
-        PreparedStatement statement=DbConfig.getPreparedStatement("select * from books where bookid = ?");
+    public Book(int bookid ,HttpSession session) throws BookNotFoundException, SQLException {
+        PreparedStatement statement=DbConfig.getPreparedStatement("select * from books where bookid = ?",session);
         statement.setInt(1,bookid);
         ResultSet rs= statement.executeQuery();
        if(!rs.next())
@@ -89,22 +90,22 @@ private String bookname,publisher,author,edition;
     public void setEdition(String edition) {
         this.edition = edition;
     }
-    public void save() throws SQLException, BookNotFoundException
+    public void save(HttpSession session) throws SQLException, BookNotFoundException
     {
-        if(isIdExisting(bookid))
-            update();
+        if(isIdExisting(session,   bookid))
+            update(session);
         else
-        insert();
+        insert(session);
     }
-    private static boolean isIdExisting(int id) throws SQLException
+    private static boolean isIdExisting(HttpSession session,   int id) throws SQLException
     {
-        PreparedStatement statement=DbConfig.getPreparedStatement("select * from books where bookid=?");
+        PreparedStatement statement=DbConfig.getPreparedStatement("select * from books where bookid=?",session);
         statement.setString(1, "" + id);
         return statement.executeQuery().next();
     }
-private void insert() throws SQLException
+private void insert(HttpSession session) throws SQLException
 {
-    PreparedStatement statement=DbConfig.getPreparedStatement("insert into books values(bookseq.nextVal,?,?, ?, ?,?,? )");
+    PreparedStatement statement=DbConfig.getPreparedStatement("insert into books values(bookseq.nextVal,?,?, ?, ?,?,? )",session );
     statement.setString(1, bookname);
     statement.setString(2, publisher);
     statement.setString(3, author);
@@ -112,19 +113,19 @@ private void insert() throws SQLException
     statement.setString(5, edition);
     statement.setString(6, "" + location);
     statement.executeUpdate();
-    this.bookid=getNewId();   
+    this.bookid=getNewId(session);   
 }
 
-private static int getNewId() throws SQLException
+private static int getNewId(HttpSession session) throws SQLException
 {
-    PreparedStatement  statement=DbConfig.getPreparedStatement("select max(bookid) from books");
+    PreparedStatement  statement=DbConfig.getPreparedStatement("select max(bookid) from books",session);
     ResultSet rs=statement.executeQuery();
     rs.next();
     return Integer.parseInt("" + rs.getString(1));
 }
-private void update() throws SQLException,BookNotFoundException
+private void update(HttpSession session) throws SQLException,BookNotFoundException
     {
-    PreparedStatement statement=DbConfig.getPreparedStatement("update books set bookname=?,publisher=?,author=?,price=?,edition=?,location=? where bookid=?");
+    PreparedStatement statement=DbConfig.getPreparedStatement("update books set bookname=?,publisher=?,author=?,price=?,edition=?,location=? where bookid=?",session);
     statement.setString(1, bookname);
     statement.setString(2, publisher);
     statement.setString(3, author);
@@ -137,9 +138,9 @@ private void update() throws SQLException,BookNotFoundException
     
     }
 
-public static void delete(int bookid) throws SQLException
+public static void delete(HttpSession session,  int bookid) throws SQLException
     {
-    PreparedStatement statement=DbConfig.getPreparedStatement("delete from books where bookid=?");
+    PreparedStatement statement=DbConfig.getPreparedStatement("delete from books where bookid=?",session);
     statement.setString(1,""+bookid);
     statement.executeUpdate();
     

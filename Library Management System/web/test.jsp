@@ -1,8 +1,3 @@
-<%-- 
-    Document   : test
-    Created on : Oct 19, 2021, 12:21:01 PM
-    Author     : maury
---%>
 
 <%@page import="bookpackage.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,7 +15,7 @@
         //out.println(b);
         Book b1=new Book(1);
         b1.setAuthor("Shivank");
-           // b1.save();
+        b1.save();
         //Book.delete(9);
         out.println(b1);
             }
