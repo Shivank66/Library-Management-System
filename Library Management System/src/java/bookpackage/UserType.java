@@ -14,7 +14,7 @@ import validationspackage.BookNotFoundException;
 
 /**
  *
- * @author maury
+ * 
  */
 public class UserType {
     
@@ -49,11 +49,10 @@ private String UserTYPE;
        if(!rs.next())
            throw new BookNotFoundException(Usertypeno);
        this.Usertypeno=Usertypeno; 
-       this.UserTYPE=UserTYPE;
+       this.UserTYPE=""+rs.getObject(2);
            
     }
 
-    
     public void save(HttpSession session) throws SQLException, BookNotFoundException
     {
         if(isIdExisting( session,  Usertypeno))
@@ -91,8 +90,7 @@ private void update(HttpSession session) throws SQLException,BookNotFoundExcepti
     statement.setString(2,""+Usertypeno);
     
     statement.executeUpdate();
-    
-    
+   
     }
 
 
@@ -104,6 +102,7 @@ private void update(HttpSession session) throws SQLException,BookNotFoundExcepti
     public String toString() {
         return "Usertypes{" + "Usertypeno=" + Usertypeno + ", UserType=" + UserTYPE  + '}';
     }
+    
     
     
     

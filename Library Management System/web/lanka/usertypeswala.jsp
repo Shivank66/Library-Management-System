@@ -14,6 +14,7 @@
     String typename="";
     int alloted=0;
     String result="";
+    String alert="";
     String check=request.getParameter("check");
     boolean isEmpty = true;
     if(check!=null)
@@ -31,11 +32,22 @@
         alloted=u.getNewId(session);
         
         result=typename+" got "+alloted+" User Type No.";
+        
+        alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Data inserted");
      }
      else
         result="Null chori sadda hogaya ";}
         catch(Exception ex)
         {
+            
+            
+            if(check==""){
+                alert="";
+            }
+            else{
+               alert=validationspackage.AlertsAndMessages.showWarning("WARNING!!","Usertype Name already exist"); 
+            }
+            out.println("RAM"+check+"Ram");
             System.out.println(ex);
         }
     }
@@ -97,8 +109,19 @@ background-color:#022140 ;    }
 </style>
 </head>
 <body >
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <%=alert%>
+        </div>
+    </div>
+</div>
 <form action="usertypeswala.jsp" method="post">
 <div class="container cont ">
+    
+        
+        
+    
 	<div class="row">
             <input
                 type="hidden" name="check" id="check">
@@ -146,7 +169,7 @@ background-color:#022140 ;    }
 	
 	
 	
-	
+                
 </div>
 </form>
     </body>
