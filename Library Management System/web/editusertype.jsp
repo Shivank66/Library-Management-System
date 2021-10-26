@@ -2,6 +2,9 @@
 <%@page import="dbpackage.DbConfig"%>
 <%
     String key="";
+    String link="";
+    String disabler="";
+    String disabledColor="";
     String result="";
     String alert="";
     String currtype="";
@@ -23,6 +26,7 @@
     
     else
     {
+     try{
         String newtype=request.getParameter("newtype");
         int typeno= Integer.parseInt(""+request.getParameter("key"));
         key="" + typeno;
@@ -30,10 +34,19 @@
           currtype=usertype.getUserTYPE();
           usertype.setUserTYPE(newtype);
           usertype.save(session);
-    
+          alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Data Updated");
+          disabler="disabled";
+          link="<a style=\"color:white;\" href=\"http://localhost:777/Library_Management_System/usertypetable.jsp\">Click to go back";
+          disabledColor="style=\"background-color:grey;\"";
+     }
+     catch(Exception ex){
+         alert=validationspackage.AlertsAndMessages.showWarning("Warning!!","User Type Name already exist,You can not Update type name to already existing type name");
+                 
+     }
+        
     }
     
-    
+      
     
     %>
 
@@ -48,6 +61,7 @@
  
 <body >
  <%@include file ="menu.jsp"%>
+ <%=alert%>
 
 <div class="container cont ">
     
@@ -75,10 +89,10 @@
                    <div class="form-group">
 			Current Usertype Name   <br>
                         <input type="text" readonly class="input form-control" value="<%=currtype%>" placeholder="Enter User Type" name="typename" id="typename" >
-			</div> 
+			</div>
 		</div>
 		<div class ="col-md-6">
-			
+		 	
 			
 			<div class="form-group">
 			 New Usertype<br>
@@ -94,11 +108,27 @@
 		</div>
                 <div class="col-md-4 form-group">
 			
-			<input type="submit" class="button" name="cmd" value="Update">
+			<input type="submit" <%=disabler%> <%=disabledColor%>  class="button" name="cmd" value="Update">
 		</div>
         <div class="col-md-3">
-            
+         
 		</div>
+                </div>
+          <div class="row">
+		<div class="col-md-5 ">
+			
+			
+		</div>
+                <div class="col-md-4 ">
+			 <%=link%>
+			</div>
+        <div class="col-md-3">
+         
+		</div>  
+                        </div>
+                
+                
+                
 	</form>	
 	</div>
   

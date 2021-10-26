@@ -52,7 +52,7 @@ public static String getTable(String query,HttpSession session) throws SQLExcept
                 
                 output+="<td style=\"margin-right:100px;\">" + rs.getObject(i) + "</td>";
             }
-            output+="<td><a href='editusertype.jsp?key="+key+ "' target='edit'>Edit</a></td></tr>\n";
+            output+="<td><a href='editusertype.jsp?key="+key+ "' target=''>Edit</a></td></tr>\n";
                 
         }
         output+="</table>\n";
