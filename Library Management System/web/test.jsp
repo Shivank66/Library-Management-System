@@ -13,11 +13,11 @@
             {
         //Book b=new Book(100, 2, "Advance C", "Lanka Publisher", "Pappu", "One");
         //out.println(b);
-        Book b1=new Book(1);
-        b1.setAuthor("Shivank");
-        b1.save();
+       // Book b1=new Book(1);
+        //b1.setAuthor("Shivank");
+        //b1.save();
         //Book.delete(9);
-        out.println(b1);
+        //  out.println(b1);
             }
             catch(Exception ex)
             {

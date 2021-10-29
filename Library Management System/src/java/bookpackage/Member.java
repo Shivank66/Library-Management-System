@@ -23,8 +23,9 @@ public class Member {
     private String mobile="";
     private String regDate="";
     private String validTillDate="";
+    private int SiteUserNo;
 
-    public Member(int usertypeno,String firstname,String lastname,String address,String mobile,String regDate, String validTillDate) {
+    public Member(int usertypeno,String firstname,String lastname,String address,String mobile,String regDate, String validTillDate,int SiteUserNo) {
     this.usertypeno=usertypeno;
     this.firstName=firstname;
     this.lastName=lastname;
@@ -32,6 +33,7 @@ public class Member {
     this.mobile=mobile;
     this.regDate=regDate;
     this.validTillDate=validTillDate;
+    this.SiteUserNo=SiteUserNo;
     }
 
     public Member(HttpSession session, int memberno) throws SQLException, MemberNotFoundException {
@@ -46,7 +48,8 @@ public class Member {
         this.address=""+rs.getObject(5);
         this.mobile=""+rs.getObject(8);
         this.regDate=""+rs.getObject(6);
-        this.validTillDate=""+rs.getObject(7);;
+        this.validTillDate=""+rs.getObject(7);
+        this.SiteUserNo=Integer.parseInt(""+rs.getObject(8));
     }
     
 
@@ -112,7 +115,7 @@ public class Member {
     }
    private void insert(HttpSession session) throws SQLException
 {
-    PreparedStatement statement=DbConfig.getPreparedStatement("insert into members values(membersequence.nextVal,?,?,?,?,to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?)", session);
+    PreparedStatement statement=DbConfig.getPreparedStatement("insert into members values(membersequence.nextVal,?,?,?,?,to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?)", session);
     statement.setString(1, this.firstName);
     statement.setString(2, this.lastName);
     statement.setString(3, (this.usertypeno)+"");
@@ -120,6 +123,7 @@ public class Member {
     statement.setString(5, this.regDate);
     statement.setString(6, this.validTillDate);
     statement.setString(7, this.mobile);
+    statement.setString(8,""+(this.SiteUserNo));
    
     
     statement.executeUpdate();
@@ -135,7 +139,7 @@ private void update(HttpSession session) throws SQLException
     statement.setString(5, this.regDate);
     statement.setString(6, this.validTillDate);
     statement.setString(7, this.mobile);
-    
+    //statement.setString(8,""+(this.SiteUserNo));
     statement.executeUpdate();
    
     }   
@@ -163,8 +167,5 @@ public static int getNewId(HttpSession session) throws SQLException
     @Override
     public String toString() {
         return "Member{" + "memberno=" + memberno + ", usertypeno=" + usertypeno + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", mobile=" + mobile + ", regDate=" + regDate + ", validTillDate=" + validTillDate + '}';
-    }
-    
-    
-    
+    }  
 }

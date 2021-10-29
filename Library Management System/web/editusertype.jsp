@@ -59,7 +59,7 @@
         <title> EditUserType</title>
     </head>
  
-<body >
+
  <%@include file ="menu.jsp"%>
  <%=alert%>
 
@@ -137,11 +137,11 @@
 	
 	
                 
-</div>
+
   
  <%@include file="footer.jsp"%> 
    
 
-</body>
-    
+
+ </body>   
 </html>

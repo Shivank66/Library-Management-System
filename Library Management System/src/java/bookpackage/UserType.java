@@ -8,6 +8,7 @@ package bookpackage;
 import dbpackage.DbConfig;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 import validationspackage.BookNotFoundException;
@@ -92,6 +93,32 @@ private void update(HttpSession session) throws SQLException,BookNotFoundExcepti
     statement.executeUpdate();
    
     }
+public static String dropdown(HttpSession session) throws SQLException{
+   PreparedStatement statement=DbConfig.getPreparedStatement("Select * from usertypes",session); 
+    String output="<div  >\n<Select class=\"form-control\" id=\"userTypeno\" name=\"userTypeno\" placeholder=\"UserType\">\n";
+   
+        ResultSet rs=statement.executeQuery();
+        ResultSetMetaData rsmd=rs.getMetaData();
+      //  int n= rsmd.getColumnCount();
+      //  <option value="1">Member</option>
+        
+           
+        while(rs.next())
+        {
+            
+            //String nam="" + rs.getObject(2);
+            String usertypeno="" + rs.getObject(1);
+            String usertype=""+rs.getObject(2);
+            output+="<option value=\""+usertypeno+"\">"+usertype+"</option>" +"\n";
+            
+           
+                
+        }
+        output+="</Select>\n</div>";
+        return output;
+        
+    }
+    
 
 
 

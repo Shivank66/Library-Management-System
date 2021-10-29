@@ -12,7 +12,7 @@ public class Book {
 private int bookid,price,location;
 private String bookname,publisher,author,edition;
 
-    public Book( int price, int location, String bookname, String publisher, String author, String edition) {
+    public Book( String bookname, String publisher, String author, String edition, int price, int location) {
         
         this.price = price;
         this.location = location;
@@ -105,7 +105,7 @@ private String bookname,publisher,author,edition;
     }
 private void insert(HttpSession session) throws SQLException
 {
-    PreparedStatement statement=DbConfig.getPreparedStatement("insert into books values(bookseq.nextVal,?,?, ?, ?,?,? )",session );
+    PreparedStatement statement=DbConfig.getPreparedStatement("insert into books values(booksequence.nextVal,?,?,?,?,?,?)",session );
     statement.setString(1, bookname);
     statement.setString(2, publisher);
     statement.setString(3, author);
