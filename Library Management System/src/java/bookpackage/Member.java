@@ -15,7 +15,7 @@ import validationspackage.MemberNotFoundException;
  * @author maury
  */
 public class Member {
-    private int memberno;
+    private int memberno=-1;
     private int usertypeno;
     private String firstName="";
     private String lastName="";

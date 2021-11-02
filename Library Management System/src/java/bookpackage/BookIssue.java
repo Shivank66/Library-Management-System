@@ -138,10 +138,15 @@ public class BookIssue {
     //statement.setString(8,""+(this.SiteUserNo));
     statement.executeUpdate();
     }
-   public static void main(String[] args) {    
-   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd ");  
+   public static String getCurrentDate() {    
+   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd");  
    LocalDateTime now = LocalDateTime.now();  
-   System.out.println(dtf.format(now));  
+   return dtf.format(now);  
+} 
+    public static String getExpectedReturnDate() {    
+   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd");  
+   LocalDateTime now = LocalDateTime.now().plusDays(15);  
+   return (dtf.format(now)); 
 } 
    
 }

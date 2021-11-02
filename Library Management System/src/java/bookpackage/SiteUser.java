@@ -20,7 +20,7 @@ import validationspackage.Siteuserexception;
 public class SiteUser {
 
     
-    private int userno;
+    private int userno=-1;
     private String UserName;
     private String password;
     private int userTypeno;

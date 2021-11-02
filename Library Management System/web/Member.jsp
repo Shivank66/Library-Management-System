@@ -27,13 +27,14 @@
      usertypeno=Integer.parseInt(""+request.getParameter("userTypeno"));
     SiteUser s=new SiteUser(username,password,usertypeno,"Active");
      s.save(session);
-     userno=s.getNewId(session);
+     userno=s.getUserno();
      Member m=new Member(usertypeno,nam1,nam2,address,mobile,dateR,dateE,userno);
      m.save(session);
     
-      alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Data Updated");
+      alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Data Inserted");
         }
          catch(Exception ex){
+             System.err.println(ex);
           if(check==""){
                 alert="";
             }

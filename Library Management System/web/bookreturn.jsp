@@ -1,3 +1,8 @@
+<%-- 
+    Document   : bookreturn.jsp
+    Created on : Oct 29, 2021, 5:57:19 PM
+    Author     : maury
+--%>
 <%@page import="bookpackage.BookIssue"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="dbpackage.DbConfig"%>
@@ -5,69 +10,13 @@
 <%@page import = "java.sql.Connection"%>
 <%@page import = "java.util.Date"%>
 <%@page import ="java.text.SimpleDateFormat"%>  
-  
-  
-      
-   
 
-
-        <%
-            
-            int Rid;
-            int uid;
-            int bid;
-           
-            String datei;
-            String datere;
-            String date1="value=\""+BookIssue.getCurrentDate()+"\"";//new SimpleDateFormat("yyyy-mm-dd").parse(datei);
-            String date2="value=\""+BookIssue.getExpectedReturnDate()+"\"";//new SimpleDateFormat("yyyy-mm-dd").parse(datere);
-            
-            String datera="";
-            String remarks="";
-            int fine=0;
-            
-            String alert="";
-            String check=request.getParameter("check");
-    boolean isPostback = false;
-    if(check!=null)
-        isPostback=true;
-    
-    if(isPostback)
-    {
-                try
-                {
-                    //Rid=request.getParameter("recno");
-                    uid =Integer.parseInt(request.getParameter("userId"));
-                    bid =Integer.parseInt(request.getParameter("bookId"));
-                    datei = request.getParameter("dateI");
-                    datere = request.getParameter("dateR");
-                    //datera = request.getParameter("dateA");
-                    remarks = request.getParameter("rmks");
-                    //fine = Integer.parseInt(request.getParameter("fin"));
-                    BookIssue b = new BookIssue(uid, bid, datei, datere, datera, remarks, fine);
-                    b.save(session);
-                    Rid=b.getReceipt();
-                    alert=validationspackage.AlertsAndMessages.showSuccess("Sucess!!", "Data inserted successfully");
-                }
-                
-                catch(Exception ex)
-                {
-                    alert=validationspackage.AlertsAndMessages.showWarning("Warning!!", "Something went wrong");
-                    
-                }
-                  
-    }             
-                    
-                
-            
-            
-        %>
 <%@include file="header.jsp"%>
 </head>
 <body class="container-fluid">
 <%@include file="menu.jsp"%>
 <div class="container-fluid">
-    <form action="bookissue.jsp" method="post">
+    <form action="bookreturn.jsp" method="post">
     <div class='row'>
         <div class="col-sm-12">
             <%=alert%>
