@@ -22,7 +22,7 @@ public class UserType {
 
 
     
-private int Usertypeno;
+private int Usertypeno=-1;
 private String UserTYPE;
 
     public UserType(String UserTYPE) {
@@ -46,6 +46,7 @@ private String UserTYPE;
     public UserType(HttpSession session,  int Usertypeno) throws BookNotFoundException, SQLException {
         PreparedStatement statement=DbConfig.getPreparedStatement("select * from usertypes where usertypeno = ?",session);
         statement.setInt(1,Usertypeno);
+        
         ResultSet rs= statement.executeQuery();
        if(!rs.next())
            throw new BookNotFoundException(Usertypeno);

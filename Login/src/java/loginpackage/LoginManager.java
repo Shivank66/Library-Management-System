@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginManager {
-    private static String loginpage = "loginpage.jsp",homepage="home.jsp",logoutpage="logout.jsp";
+    private static String loginpage = "loginmodal.jsp",homepage="Index.jsp",logoutpage="logout.jsp";
     public static boolean doLogout(HttpServletResponse response,HttpSession session)
     {
         try
@@ -69,14 +69,14 @@ public class LoginManager {
         }
     }
     
-    public static boolean doLogin(String username,String password,HttpSession session, HttpServletResponse response)
+    public static boolean doLogin(String siteusername,String password,HttpSession session, HttpServletResponse response)
     {
         try
         {
-            boolean b=isUserNameAndPasswordCorrect(username, password, session);
+            boolean b=isUserNameAndPasswordCorrect(siteusername, password, session);
             if(!b)
                 return false;
-            session.setAttribute("username", username);
+            session.setAttribute("siteusername", siteusername);
             response.sendRedirect(homepage);
             return true;
             

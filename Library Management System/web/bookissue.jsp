@@ -1,5 +1,10 @@
+<%
+     if(!LoginManager.protectPage(response, session))
+       return;
+%>
+
 <%@page import="bookpackage.BookIssue"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="loginpackage.LoginManager"%>
 <%@page import="dbpackage.DbConfig"%>
 <%@page import = "java.sql.PreparedStatement"%>
 <%@page import = "java.sql.Connection"%>
@@ -13,6 +18,10 @@
 
         <%
             
+ 
+    
+
+
             int Rid;
             int uid;
             int bid;
@@ -26,7 +35,7 @@
             String remarks="";
             int fine=0;
             
-            String alert="";
+            String alert = "";
             String check=request.getParameter("check");
     boolean isPostback = false;
     if(check!=null)

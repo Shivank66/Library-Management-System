@@ -1,3 +1,55 @@
+<%@page import="loginpackage.LoginManager"%>
+<%
+    String username="";
+    String login="";
+    String password="";
+    String alert="";
+    //String sbt="";
+    String check="";
+    //try{
+       // if(LoginManager.protectPage(response, session)){
+         //   login="logged in";
+      //  }
+       
+    //}
+    //catch(Exception ex){
+        
+    //}
+    //finally{
+    
+    check=request.getParameter("check");
+    boolean isPostback= false;
+    if(check!=null){
+        isPostback= true;
+    }
+    if(isPostback)
+    {
+        try{
+        
+        username=request.getParameter("usr");
+        password=request.getParameter("pwd");
+        boolean b=LoginManager.doLogin(username, password, session, response);
+        out.println(b);
+         if(b){
+             
+              alert = validationspackage.AlertsAndMessages.showSuccess("Logged in!!", "") ;
+            }
+         }
+       
+        
+        catch(Exception ex)
+        {
+            alert = validationspackage.AlertsAndMessages.showWarning("Login Failed!!", "username or password is wrong.");
+        }
+        }
+        
+    
+    //}
+    
+    
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,76 +140,15 @@ margin-left: 4px;
 }
 </style>
 </head>
-<body class='container-fluid'>
-
+<body class='container-fluid' style="background-color:#bbf1f1;">
 <div class="row">
-            <nav class="col-sm-12 navbar navbar-expand-sm bg-dark navbar-dark container-fluid " ><!--Navigation bar-->
-                <!-- navbar is just to define navigation bar
-                navbar-expand-sm arranges link in horizontal order
-                bg-dark background color dark 
-                navbar-dark it color of the text light 
-                -->
-                <a class="navbar-brand col-sm-1" href="#">IIIT Bhagalpur</a>
-                <!-- Toggler/collapsibe Button -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!--Navbar links-->
-                <div class="collapse navbar-collapse col-sm-10 " id="collapsibleNavbar">
-                <ul class ="navbar-nav container-fluid">
-		
-                    <li class = "nav-item active col-sm-1 "> 
-                        <a class="nav-link" href="#"> Link 1 </a>
-                    </li>
-                     <!-- Dropdown -->
-                     <li class="nav-item dropdown  col-sm-2">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Dropdown link
-                            </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Link 1a</a>
-                            <a class="dropdown-item" href="#">Link 1b</a>
-                            <a class="dropdown-item" href="#">Link 1c</a>
-                        </div>
-                     </li>
-                    <li  class = "nav-item  col-sm-1"> 
-                        <a class="nav-link" href="#"> Link 2 </a>
-                    </li>
-                    <li  class = "nav-item  col-sm-1">
-                        <a class="nav-link disabled" href="#"> Link 3 </a>
-                    </li>
-                    <li  class = "nav-item  col-sm-6">
-                        
-                    </li>
-                    <li  class = "nav-item  col-sm-2 ">
-
-                    </li>
-                </ul>
-                </div>
-                                        <!--Login Button Starts here-->
-                 <div class="col-sm-1">
- 
-
-  <!-- Button to Open the Modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Log In 
-  </button>
-
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header" style="background-color:teal">
-          
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="container">
-	<div class="d-flex justify-content-center h-100">
+    <h1 style="margin-left:32%;">Library Management System   </h1>
+    
+</div>
+    <hr>
+<div class="container" style="margin-top:7%;">
+    
+	<div class="d-flex justify-content-center h-100"  >
 		<div class="card">
 			<div class="card-header">
 				<h3>Log In</h3>
@@ -168,7 +159,8 @@ margin-left: 4px;
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+                            <form action="loginmodal.jsp" method="post">
+                                <input type="hidden" name="check" id="check">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text" style="background-color:teal; color:white;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
@@ -176,7 +168,7 @@ margin-left: 4px;
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
 </svg> </span>
 						</div>
-						<input type="text" class="form-control" placeholder="username">
+						<input type="text" class="form-control" id="usr" name="usr" placeholder="username">
 						
 					</div>
 					<div class="input-group form-group">
@@ -186,7 +178,7 @@ margin-left: 4px;
   <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
 </svg></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password">
+						<input type="password" id="pwd" name="pwd" class="form-control" placeholder="password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
@@ -200,20 +192,6 @@ margin-left: 4px;
                 </div>
             </div>
         </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  
-</div>
-                        <!--Login button ends here-->
-                </nav><!--Navigation bar ends -->
-            </div>
     
 
 </body>

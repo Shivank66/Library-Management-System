@@ -1,4 +1,4 @@
-
+<%@page import="loginpackage.LoginManager"%>
 <%@page import="bookpackage.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +18,10 @@
         //b1.save();
         //Book.delete(9);
         //  out.println(b1);
+                boolean a=LoginManager.doLogin("Rajnish","Raj13",session,response);
+                System.out.println(a);
+                String h=session.getAttribute("usertype")+"";
+                System.out.println(h);
             }
             catch(Exception ex)
             {

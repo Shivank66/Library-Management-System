@@ -1,4 +1,7 @@
-
+<%
+     if(!LoginManager.protectPage(response, session))
+       return;
+%>
 <%@page import="bookpackage.Book"%>
 <%
     int bookid; 

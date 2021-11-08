@@ -3,11 +3,12 @@ package loginpackage;
 import dbpackage.DbConfig;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginManager {
-    private static String loginpage = "Homepage.jsp",homepage="Homepage.jsp",logoutpage="Homepage.jsp";
+    private static String loginpage = "loginmodal.jsp",homepage="Index.jsp",logoutpage="logout.jsp";
     public static boolean doLogout(HttpServletResponse response,HttpSession session)
     {
         try
@@ -28,13 +29,28 @@ public class LoginManager {
         {
             if(isUserLoggedIn(session))
                 return true;
-            response.sendRedirect(loginpage);
+            response.sendRedirect(homepage);
             return false;
         }
         catch(Exception ex)
         {
             System.err.println(ex);
             return false;
+        }
+    }
+    public static String getCurrentUserType(HttpSession session)
+    {
+        try
+        {
+             if(session.getAttribute("usertype")==null)
+                 return "";
+             else 
+                 return "" + session.getAttribute("usertype");
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return "";
         }
     }
     
@@ -77,8 +93,14 @@ public class LoginManager {
             if(!b)
                 return false;
             session.setAttribute("siteusername", siteusername);
+            String usertypecheck=usertype(siteusername,session);
+            session.setAttribute("usertype",usertypecheck );
+            System.out.println(usertypecheck);
+           
+            
             response.sendRedirect(homepage);
             return true;
+            
             
         }
         catch(Exception ex)
@@ -108,6 +130,27 @@ public class LoginManager {
             return false;
         }
     }
+    public static String usertype(String siteusername,HttpSession session) throws SQLException
+    {
+        try{
+        PreparedStatement ps=DbConfig.getPreparedStatement("select usertype from usertypes u join siteusers s on u.usertypeno=s.usertypeno where siteusername=?", session);
+        ps.setString(1, siteusername);
+         ResultSet rs=ps.executeQuery();
+            if(rs.next())
+                return rs.getObject(1)+"";
+            else 
+                return "";
+            
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return "";
+        }
+    }    
+    
+    
+    
 }
 
 

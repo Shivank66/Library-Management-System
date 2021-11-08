@@ -101,12 +101,14 @@ window.onload= function () {
     </script>
 </head>
 <body >
-<%@include file="menu.jsp"%>
+     <%@include file='menu.jsp'%>
+<!--!-->
 <form action="Member.jsp" method="post">
-<div class="container cont ">
     <div class="col-sm-12">
             <%=alert%>
         </div>
+<div class="container cont ">
+    
 	<div class="row">
             <input
                 type="hidden" name="check" id="check">

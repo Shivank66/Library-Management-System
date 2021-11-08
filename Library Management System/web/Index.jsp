@@ -49,7 +49,7 @@
 				</div>
 			</div>
 			<div class="carousel-item ">
-				<img src="images/pic2.jpg" alt="Nature 2" width="100%" height="400px" >
+                            <img src="images/pic2.jpg" alt="Nature 2" width="100%" height="400px" >
 				<div class="carousel-caption text-color">
 					<h3>Library photo</h3>
 					<p>scene 2</p>
