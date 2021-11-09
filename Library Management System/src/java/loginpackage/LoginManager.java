@@ -73,16 +73,21 @@ public class LoginManager {
     {
         try
         {
-            if(session.getAttribute("siteusername")==null)
-                return false;
-            else 
-                return true;
+            return session.getAttribute("siteusername") != null;
         }
         catch(Exception ex)
         {
             System.err.println(ex);
             return false;
         }
+    }
+    public static boolean isUserClerk(HttpSession session) throws SQLException
+    {
+        return getCurrentUserType(session).equals("Clerk");
+    }
+    public static boolean isUserAdmin(HttpSession session) throws SQLException
+    {
+        return getCurrentUserType(session).equals("Admin");
     }
     
     public static boolean doLogin(String siteusername,String password,HttpSession session, HttpServletResponse response)
@@ -147,7 +152,53 @@ public class LoginManager {
             System.err.println(ex);
             return "";
         }
-    }    
+    } 
+    
+    public static boolean protectPageAdmin(HttpServletResponse response,HttpSession session)
+    {
+        try
+        {
+            if(isUserLoggedIn(session) && isUserAdmin(session) )
+                return true;
+            response.sendRedirect(homepage);
+            return false;
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return false;
+        }
+    }
+    public static boolean protectPageAdminClerk(HttpServletResponse response,HttpSession session)
+    {
+        try
+        {
+            if(isUserLoggedIn(session) && (isUserAdmin(session)||isUserClerk(session))   )
+                return true;
+            response.sendRedirect(homepage);
+            return false;
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return false;
+        }
+    }
+    public static boolean protectPageClerk(HttpServletResponse response,HttpSession session)
+    {
+        try
+        {
+            if(isUserLoggedIn(session) && isUserClerk(session))
+                return true;
+            response.sendRedirect(homepage);
+            return false;
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return false;
+        }
+    }
     
     
     

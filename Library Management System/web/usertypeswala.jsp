@@ -1,8 +1,8 @@
-<%-- 
-    Document   : usertypeswala
-    Created on : Oct 20, 2021, 1:55:33 PM
-    Author     : maury
---%>
+<%
+     
+     if(!(LoginManager.protectPageAdmin(response,session)))
+       return;
+%>
 <%@page import="dbpackage.DbConfig"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>

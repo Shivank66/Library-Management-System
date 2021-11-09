@@ -39,7 +39,7 @@ public static String getTable(String query,HttpSession session) throws SQLExcept
         int n= rsmd.getColumnCount();
         output+="\n<tr>";
             for(int i=1;i<=n;i++)
-                output+="<th style=\"margin-right:100px;\">" + rsmd.getColumnLabel(i) + "</th>";
+                output+="<th style=\"margin-right:100px;\">" + rsmd.getColumnLabel(i) + "</th>"+"<th style=\"margin-right:100px;\">" +" &nbsp; &nbsp; &nbsp;  " + "</th>";
             output+="<th>Action</th></tr>\n";
         while(rs.next())
         {
@@ -50,7 +50,7 @@ public static String getTable(String query,HttpSession session) throws SQLExcept
             for(int i=1;i<=n;i++)
             {
                 
-                output+="<td style=\"margin-right:100px;\">" + rs.getObject(i) + "</td>";
+                output+="<td style=\"margin-right:100px;\">" + rs.getObject(i) + "</td>"+"<td style=\"margin-right:100px;\">" +" &nbsp; &nbsp; &nbsp;  " + "</td>";
             }
             output+="<td><a href='editusertype.jsp?key="+key+ "' target=''>Edit</a></td></tr>\n";
                 

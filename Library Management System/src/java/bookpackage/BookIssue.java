@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import validationspackage.BookNotFoundException;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
+import static oracle.sql.DATE.getCurrentDate;
    
    
 
@@ -30,6 +31,32 @@ public class BookIssue {
         this.rmks = rmks;
         this.fine = fine;
     }
+    
+    public BookIssue(int bookid,HttpSession session) throws BookNotFoundException, SQLException {
+        PreparedStatement statement=DbConfig.getPreparedStatement("select * from bookissue where bookid=? and actualreturndate is null",session);
+        statement.setInt(1,bookid);
+        ResultSet rs= statement.executeQuery();
+       if(!rs.next())
+           throw new BookNotFoundException(bookid);
+        //this.bookid=bookid;
+        this.memberno = Integer.parseInt("" + rs.getObject("userid"));
+      //  this.location = Integer.parseInt("" + rs.getObject("location"));
+        this.dateIssue =rs.getObject("dateofissue")+"";
+        this.dateExpected = "" + rs.getObject("expectedreturndate");
+        this.dateActual = ""+  getCurrentDate();
+        
+      //  this.edition = "" + rs.getObject("edition");
+       // this.memberno = memberno;
+       // this.bookid = bookid;
+       // this.dateIssue = dateIssue;
+        //this.dateExpected = dateExpected;
+       // this.dateActual = dateActual;
+        this.rmks = rmks;
+        this.fine = fine;
+           
+    }
+    
+    
 
 
     public void setMemberno(int memberno) {

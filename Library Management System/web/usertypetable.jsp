@@ -1,4 +1,8 @@
-
+<%
+     
+     if(!(LoginManager.protectPageAdmin(response,session)))
+       return;
+%>
 
 <%@page import="java.sql.ResultSetMetaData"%>
 <%@page import="java.sql.ResultSet"%>

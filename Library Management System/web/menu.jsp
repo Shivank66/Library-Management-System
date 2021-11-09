@@ -36,7 +36,7 @@
 if (LoginManager.isUserLoggedIn(session))
 {
      ut=LoginManager.getCurrentUserType(session);
-    if(ut.equals("Admin"))
+    if (LoginManager.isUserAdmin(session))//if(ut.equals("Admin"))
     {
         menu="<li class = \"nav-item active col-sm-1 \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
@@ -60,7 +60,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >Book</button>\n" +
 "                            <div class=\"dropdown-content\">\n" +
 "                                <a href=\"book.jsp\">Book Entry</a>\n" +
-"                                <a href=\"#\">Book Update</a>\n" +
+"                                <a href=\"Bookupdate.jsp\">Book Update</a>\n" +
 "                                <a href=\"#\">Book Delete</a>\n" +
 "                            </div>\n" +
 "                        <!--</div>-->\n" +
@@ -81,7 +81,7 @@ if (LoginManager.isUserLoggedIn(session))
 "\n" +
 "                    </li>";
     }
-    else if(ut.equals("Clerk"))
+    else if(LoginManager.isUserClerk(session))//if(ut.equals("Clerk"))
     {
         menu="<li class = \"nav-item active col-sm-1 \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
@@ -94,7 +94,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >Book</button>\n" +
 "                            <div class=\"dropdown-content\">\n" +
 "                                <a href=\"book.jsp\">Book Entry</a>\n" +
-"                                <a href=\"#\">Book Update</a>\n" +
+"                                <a href=\"Bookupdate.jsp\">Book Update</a>\n" +
 "                            </div>\n" +
 "                        <!--</div>-->\n" +
 "\n" +
@@ -105,7 +105,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                        <a class=\"nav-link\" href=\"Member.jsp\"> Register </a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item  col-sm-1\">\n" +
-"                        <a class=\"nav-link \" href=\"bookissue.jsp\">Return</a>\n" +
+"                        <a class=\"nav-link \" href=\"bookreturn.jsp\">Return</a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item  col-sm-1\">\n" +
 "                        <a class=\"nav-link \" href=\"bookissue.jsp\">Issue</a>\n" +

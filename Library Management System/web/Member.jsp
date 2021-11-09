@@ -1,3 +1,8 @@
+<%
+     
+        if(!(LoginManager.protectPageAdminClerk(response,session)))
+       return;
+%>
 <%@page import="bookpackage.UserType"%>
 <%@page import="bookpackage.SiteUser"%>
 <%@page import="bookpackage.Member"%>

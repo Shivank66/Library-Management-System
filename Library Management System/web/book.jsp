@@ -1,5 +1,6 @@
 <%
-     if(!LoginManager.protectPage(response, session))
+     
+        if(!(LoginManager.protectPageAdminClerk(response,session)))
        return;
 %>
 <%@page import="bookpackage.Book"%>
