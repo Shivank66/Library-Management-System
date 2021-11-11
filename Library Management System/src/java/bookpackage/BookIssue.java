@@ -202,13 +202,20 @@ System.out.println(datebig);
 }
    public static int fine(String date1, String date2,int fine_per_day) throws ParseException
    {
-      int daydiff= NoOfDays( date2 , date1);
+      int daydiff= NoOfDays( date1 , date2);
       if (daydiff<0)
       {
           return 0;
       }
       return fine_per_day*daydiff;
    }
+  public static int NoOfIssuedBooks(int memberno,HttpSession session) throws SQLException
+  {
+          PreparedStatement  statement=DbConfig.getPreparedStatement("select count(*) from bookissue where userid="+memberno+"and actualreturndate is null",session);
+          ResultSet rs=statement.executeQuery();
+          rs.next();
+          return Integer.parseInt("" + rs.getString(1)); 
   
+  }
    
 }

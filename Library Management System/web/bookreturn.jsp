@@ -105,6 +105,9 @@
       b2.setDateActual(datera);
       b2.setFine(fine);
       b2.setRmks(remarks);
+      Book obj=new Book(bid,session);
+      obj.setLocation(0);
+      obj.save(session);
       b2.save(session);
         
     date1="value="+"\""+datei+"\"";
@@ -287,12 +290,7 @@ else
 		<div class="">	
 		
 		</div>
-                <%=Rid%>
-          <%=uid%>
-          <%=bid%>
-          <%=price%>
-          <%=fine%>
-          <%=remarks%>
+                
 	</div>
         <div class="row">
             

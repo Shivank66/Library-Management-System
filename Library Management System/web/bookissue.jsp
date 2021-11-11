@@ -1,3 +1,4 @@
+<%@page import="bookpackage.Book"%>
 <%
      
         if(!(LoginManager.protectPageAdminClerk(response,session)))
@@ -22,7 +23,7 @@
  
     
 
-
+            int booklimit=3;
             int Rid;
             int uid;
             int bid;
@@ -55,10 +56,31 @@
                     remarks = request.getParameter("rmks");
                     //fine = Integer.parseInt(request.getParameter("fin"));
                     BookIssue b = new BookIssue(uid, bid, datei, datere, datera, remarks, fine);
+                    Book obj=new Book(bid,session);
+                    int loc=obj.getLocation();
+                    int Number_of_books=BookIssue.NoOfIssuedBooks(uid,session);
+                    if(Number_of_books>=booklimit)
+                    {
+                        alert=validationspackage.AlertsAndMessages.showWarning("Warning!!", "Book limit Exceeded");
+                        
+                    }
+                    else
+                    {
+                    if(loc==0)
+                    {
+                  
+                    obj.setLocation(uid);
+                    obj.save(session);
+                    
                     b.save(session);
                     Rid=b.getReceipt();
                     alert=validationspackage.AlertsAndMessages.showSuccess("Sucess!!", "Data inserted successfully");
                 }
+                else
+                alert=validationspackage.AlertsAndMessages.showWarning("Warning!!", "Book already alloted");
+                    }
+                   
+                } 
                 
                 catch(Exception ex)
                 {

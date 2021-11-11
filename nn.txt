@@ -1,33 +1,18 @@
 <%@page import="loginpackage.LoginManager"%>
 <%
 
-    String siteusername=LoginManager.getCurrentUser(session);
-    
+    String login = "<a href=\"logout.jsp\" >Logout</a>";
     String ut="";
-    //String password_change="<a class=\"nav-link\" href=\"ChangePassword.jsp\"> Change Password </a>";
-    String login = "<div class=\"dropdown\">\n" +
-"  <button type=\"button\" class=\"container btn btn-primary dropdown-toggle\" style=\" min-width:150px;   \" data-toggle=\"dropdown\">\n" +
-"   <div class=\"row\"><div class=\"col-sm-2\"style=\"padding-right:5px;\"> <svg padding-right=\"10px\" xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" fill=\"currentColor\" class=\"bi bi-person-circle\" viewBox=\"0 0 16 16\">\n" +
-"  <path d=\"M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z\"/>\n" +
-"  <path fill-rule=\"evenodd\" d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z\"/>\n" +
-"</svg></div></div>"+siteusername+"\n" +
-"  </button>\n" +
-"  <div class=\"dropdown-menu\">\n" +
-"    <a class=\"dropdown-item\" href=\"ChangePassword.jsp\">Change Password</a>\n" +
-"    <a class=\"dropdown-item\" href=\"logout.jsp\">Log Out</a>\n" +
-"  </div>\n" +
-"</div>";
-    
-    String menu="<li class = \"nav-item active  \"> \n" +
+    String menu="<li class = \"nav-item active col-sm-1 \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
-"                    <li class=\"nav-item   \">\n" +
+"                    <li class=\"nav-item   col-sm-2\">\n" +
 "                            \n" +
-"                        <a class=\"nav-link\" href=\"www.iiitbh.ac.in/index.php/contact-us\">About Us</a>\n" +
+"                        <a class=\"nav-link\" href=\"#\">About Us</a>\n" +
 "\n" +
 "                     </li>\n" +
 "                     <!-- Dropdown -->\n" +
-"                     <li class=\"nav-item dropdown  \">\n" +
+"                     <li class=\"nav-item dropdown  col-sm-1\">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <>\n" +
@@ -36,31 +21,27 @@
 "                     </li>\n" +
 "                     \n" +
 "                    \n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-2\">\n" +
 "                        \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item \">\n" +
+"                    <li  class = \"nav-item  col-sm-6\">\n" +
 "                       \n" +
 "                       \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item   \">\n" +
+"                    <li  class = \"nav-item  col-sm-2 \">\n" +
 "\n" +
 "                    </li>";
     if (!LoginManager.isUserLoggedIn(session))
-    {
         login="<a href=\"loginmodal.jsp\" >Login</a>";
-        //password_change="";
-    }
 if (LoginManager.isUserLoggedIn(session))
 {
      ut=LoginManager.getCurrentUserType(session);
     if (LoginManager.isUserAdmin(session))//if(ut.equals("Admin"))
     {
-        
-        menu="<li class = \"nav-item active  \"> \n" +
+        menu="<li class = \"nav-item active col-sm-1 \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
-"                    <li class=\"nav-item dropdown  \">\n" +
+"                    <li class=\"nav-item dropdown  col-sm-1\">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >UserType</button>\n" +
@@ -73,7 +54,7 @@ if (LoginManager.isUserLoggedIn(session))
 "\n" +
 "                     </li>\n" +
 "                     <!-- Dropdown -->\n" +
-"                     <li class=\"nav-item dropdown  \">\n" +
+"                     <li class=\"nav-item dropdown  col-sm-1\">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >Book</button>\n" +
@@ -86,32 +67,31 @@ if (LoginManager.isUserLoggedIn(session))
 "\n" +
 "                     </li>\n" +
 "                     \n" +
-"                    <li  class = \"nav-item  \"> \n" +
+"                    <li  class = \"nav-item  col-sm-1\"> \n" +
 "                        <a class=\"nav-link\" href=\"Member.jsp\"> Register </a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-2\">\n" +
 "                        <a class=\"nav-link \" href=\"bookissue.jsp\"> Book Issue </a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-1\">\n" +
 "                        <a class=\"nav-link \" href=\"bookreturntable.jsp\">Return</a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item    \">\n" +""
-                + "<a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\">About Us</a>\n"+
+"                    <li  class = \"nav-item  col-sm-5  \">\n" +
 "                       \n" +
 "                       \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item   \">\n" +
+"                    <li  class = \"nav-item  col-sm-2 \">\n" +
 "\n" +
 "                    </li>";
     }
     else if(LoginManager.isUserClerk(session))//if(ut.equals("Clerk"))
     {
-        menu="<li class = \"nav-item active  \"> \n" +
+        menu="<li class = \"nav-item active col-sm-1 \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
 "                    \n" +
 "                     <!-- Dropdown -->\n" +
-"                     <li class=\"nav-item dropdown \">\n" +
+"                     <li class=\"nav-item dropdown  col-sm-1\">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >Book</button>\n" +
@@ -124,52 +104,52 @@ if (LoginManager.isUserLoggedIn(session))
 "                     </li>\n" +
 "                     \n" +
 "                     \n" +
-"                    <li  class = \"nav-item  \"> \n" +
+"                    <li  class = \"nav-item  col-sm-1\"> \n" +
 "                        <a class=\"nav-link\" href=\"Member.jsp\"> Register </a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-1\">\n" +
 "                        <a class=\"nav-link \" href=\"bookreturntable.jsp\">Return</a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-1\">\n" +
 "                        <a class=\"nav-link \" href=\"bookissue.jsp\">Issue</a>\n" +
 "                    </li>\n" +
 "                    \n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-2\">\n" +
 "                       \n" +
-"                       <a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\">About Us</a>\n" +
+"                       <a class=\"nav-link\" href=\"#\">About Us</a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-5\">\n" +
 "\n" +
 "                    </li>";
     }
     else
     {
-        menu="<li class = \"nav-item active  \"> \n" +
+        menu="<li class = \"nav-item active col-sm-1 \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
-"                    <li class=\"nav-item dropdown  \">\n" +
+"                    <li class=\"nav-item dropdown  col-sm-1\">\n" +
 "                        <a class=\"nav-link\" href=\"memberHistory.jsp\">History</a>\n" +
 "                        \n" +
 "\n" +
 "                     </li>\n" +
 "                     <!-- Dropdown -->\n" +
-"                     <li class=\"nav-item dropdown  \">\n" +
+"                     <li class=\"nav-item dropdown  col-sm-2\">\n" +
 "                        <a class=\"nav-link\" href=\"memberBooksToReturn.jsp\">Books to Return </a>\n" +
 "                        \n" +
 "\n" +
 "                     </li>\n" +
 "                     \n" +
-"                    <li  class = \"nav-item  \"> \n" +
-"                        <a href=\"https://www.iiitbh.ac.in/index.php/contact-us\" target=\"\" class=\"nav-link\">About Us</a>\n" +
+"                    <li  class = \"nav-item  col-sm-2\"> \n" +
+"                        <a class=\"nav-link\">About Us</a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-1\">\n" +
 "                        \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  \">\n" +
+"                    <li  class = \"nav-item  col-sm-4\">\n" +
 "                       \n" +
 "                       \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item   \">\n" +
+"                    <li  class = \"nav-item  col-sm-1 \">\n" +
 "\n" +
 "                    </li>";
         
@@ -196,19 +176,17 @@ if (LoginManager.isUserLoggedIn(session))
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!--Navbar links-->
-                <div class="collapse navbar-collapse col-sm-9" id="collapsibleNavbar">
-                <ul class ="navbar-nav">
+                <div class="collapse navbar-collapse col-sm-10 " id="collapsibleNavbar">
+                <ul class ="navbar-nav container-fluid">
 		
                     <%=menu%>
                 </ul>
                 </div>
-                 
                                         <!--Login Button Starts here-->
-                 <div class="col-sm-2">
+                 <div class="col-sm-1">
                     
                      <%=login%>
                  </div>
-                
       <!--Login button ends here-->
                 </nav><!--Navigation bar ends -->
             </div>

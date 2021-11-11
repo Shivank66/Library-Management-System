@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
+import loginpackage.LoginManager;
 import validationspackage.Siteuserexception;
 
 /*
@@ -110,6 +111,15 @@ public static int getNewId(HttpSession session) throws SQLException
         else
         insert(session);
     }
+     public static void ChangePassword(HttpSession session,String password) throws SQLException
+     {
+       String siteuserno= LoginManager.getCurrentSiteUserno(session);
+     PreparedStatement statement=DbConfig.getPreparedStatement("update siteusers set password=\'"+password+"\'where siteuserno=?",session);
+     statement.setString(1, "" + siteuserno);
+     ResultSet rs=statement.executeQuery();
+     // "" + rs.getString(1);
+     }
+    
     private static boolean isIdExisting(HttpSession session,  int userno) throws SQLException
     {
         PreparedStatement statement=DbConfig.getPreparedStatement("select * from siteusers where siteuserno=?",session);
@@ -120,5 +130,5 @@ public static int getNewId(HttpSession session) throws SQLException
     public String toString() {
         return "SiteUser{" + "userno=" + userno + ", UserName=" + UserName + ", password=" + password + ", userTypeno=" + userTypeno + ", status=" + status + '}';
     }
-    
+   
 }
