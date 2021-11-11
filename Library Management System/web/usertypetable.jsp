@@ -25,7 +25,7 @@
     </div>
         
       <%
-            String table=dbpackage.DbConfig.getTable("select * from usertypes",session);
+            String table=dbpackage.DbConfig.getTable("select * from usertypes","Action","Edit","editusertype.jsp",session);
       %>
       <div class ="row">
           <div class="col-sm-4"></div>

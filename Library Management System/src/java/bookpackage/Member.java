@@ -163,6 +163,15 @@ public static int getNewId(HttpSession session) throws SQLException
         statement.setString(1, "" + id);
         return statement.executeQuery().next();
     }
+   public static int getMembernoBySiteUserno(int situserno,HttpSession session) throws SQLException
+   {
+       PreparedStatement  statement=DbConfig.getPreparedStatement("select memberno from members where siteuserno=?",session);
+       statement.setString(1, ""+situserno);
+    ResultSet rs=statement.executeQuery();
+    rs.next();
+    return Integer.parseInt("" + rs.getString(1));
+       
+   }
 
     @Override
     public String toString() {

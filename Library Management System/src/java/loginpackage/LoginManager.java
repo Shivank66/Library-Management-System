@@ -38,6 +38,21 @@ public class LoginManager {
             return false;
         }
     }
+    public static String getCurrentSiteUserno(HttpSession session)
+    {
+        try
+        {
+             if(session.getAttribute("siteuserno")==null)
+                 return "";
+             else 
+                 return "" + session.getAttribute("siteuserno");
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return "";
+        }
+    }
     public static String getCurrentUserType(HttpSession session)
     {
         try
@@ -97,9 +112,11 @@ public class LoginManager {
             boolean b=isUserNameAndPasswordCorrect(siteusername, password, session);
             if(!b)
                 return false;
+            
             session.setAttribute("siteusername", siteusername);
             String usertypecheck=usertype(siteusername,session);
             session.setAttribute("usertype",usertypecheck );
+            session.setAttribute("siteuserno", siteuserno(siteusername,session));
             System.out.println(usertypecheck);
            
             
@@ -139,6 +156,24 @@ public class LoginManager {
     {
         try{
         PreparedStatement ps=DbConfig.getPreparedStatement("select usertype from usertypes u join siteusers s on u.usertypeno=s.usertypeno where siteusername=?", session);
+        ps.setString(1, siteusername);
+         ResultSet rs=ps.executeQuery();
+            if(rs.next())
+                return rs.getObject(1)+"";
+            else 
+                return "";
+            
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return "";
+        }
+    } 
+    public static String siteuserno(String siteusername,HttpSession session) throws SQLException
+    {
+        try{
+        PreparedStatement ps=DbConfig.getPreparedStatement("select siteuserno from siteusers where siteusername=?", session);
         ps.setString(1, siteusername);
          ResultSet rs=ps.executeQuery();
             if(rs.next())

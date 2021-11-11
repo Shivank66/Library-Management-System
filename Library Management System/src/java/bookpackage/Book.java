@@ -138,10 +138,10 @@ private void update(HttpSession session) throws SQLException,BookNotFoundExcepti
     
     }
 
-public static void delete(HttpSession session,  int bookid) throws SQLException
+public void delete(HttpSession session) throws SQLException
     {
     PreparedStatement statement=DbConfig.getPreparedStatement("delete from books where bookid=?",session);
-    statement.setString(1,""+bookid);
+    statement.setString(1,this.bookid+"");
     statement.executeUpdate();
     
     

@@ -139,7 +139,7 @@ background-color:#022140 ;    }
 			
 			<div class="form-group">
 			Usertype<br>
-			<input type="text" class="input form-control " placeholder="Enter User Type" name="typename" id="typename" >
+                        <input type="text" class="input form-control " placeholder="Enter User Type" value="<%=typename%>" name="typename" id="typename" >
 			</div>
 			
 		</div>

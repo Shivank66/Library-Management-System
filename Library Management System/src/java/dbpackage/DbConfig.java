@@ -29,7 +29,7 @@ public static Connection getConnection(HttpSession session) throws SQLException
        return  (Connection)session.getAttribute("connection");
                 
 }
-public static String getTable(String query,HttpSession session) throws SQLException
+public static String getTable(String query,String extra_column_name,String column_value, String jspfilename,HttpSession session) throws SQLException
     {
         Connection connection=getConnection(session);
         PreparedStatement statement=connection.prepareStatement(query);
@@ -39,8 +39,8 @@ public static String getTable(String query,HttpSession session) throws SQLExcept
         int n= rsmd.getColumnCount();
         output+="\n<tr>";
             for(int i=1;i<=n;i++)
-                output+="<th style=\"margin-right:100px;\">" + rsmd.getColumnLabel(i) + "</th>"+"<th style=\"margin-right:100px;\">" +" &nbsp; &nbsp; &nbsp;  " + "</th>";
-            output+="<th>Action</th></tr>\n";
+                output+="<th style=\"margin-right:100px;\">" +" &nbsp;  "+ rsmd.getColumnLabel(i)+" &nbsp; &nbsp;  " ;
+            output+="<th>"+extra_column_name+"</th></tr>\n";
         while(rs.next())
         {
             output+="\n<tr>";
@@ -50,9 +50,9 @@ public static String getTable(String query,HttpSession session) throws SQLExcept
             for(int i=1;i<=n;i++)
             {
                 
-                output+="<td style=\"margin-right:100px;\">" + rs.getObject(i) + "</td>"+"<td style=\"margin-right:100px;\">" +" &nbsp; &nbsp; &nbsp;  " + "</td>";
+                output+="<td style=\"margin-right:100px;\">" +"  &nbsp;  "+ rs.getObject(i)+" &nbsp; &nbsp;  " + "</td>";
             }
-            output+="<td><a href='editusertype.jsp?key="+key+ "' target=''>Edit</a></td></tr>\n";
+            output+="<td><a href='"+jspfilename+"?key="+key+ "' target=''>"+column_value+"</a> &nbsp;</td></tr>\n";
                 
         }
         output+="</table>\n";

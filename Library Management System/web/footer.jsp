@@ -1,4 +1,5 @@
-<div class="row footer" style="">
+<footer class="row footer" style="">
+
               <div class="col-sm-4">
                   
               </div>
@@ -9,4 +10,5 @@
               </div>
               <div class="col-sm-4"></div>
               
-          </div>
+          
+</footer>

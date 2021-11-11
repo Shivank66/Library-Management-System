@@ -3,16 +3,16 @@
 
     String login = "<a href=\"logout.jsp\" >Logout</a>";
     String ut="";
-    String menu="<li class = \"nav-item active col-sm-1 \"> \n" +
+    String menu="<li class = \"nav-item active  \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
-"                    <li class=\"nav-item   col-sm-2\">\n" +
+"                    <li class=\"nav-item   \">\n" +
 "                            \n" +
 "                        <a class=\"nav-link\" href=\"#\">About Us</a>\n" +
 "\n" +
 "                     </li>\n" +
 "                     <!-- Dropdown -->\n" +
-"                     <li class=\"nav-item dropdown  col-sm-1\">\n" +
+"                     <li class=\"nav-item dropdown  \">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <>\n" +
@@ -21,14 +21,14 @@
 "                     </li>\n" +
 "                     \n" +
 "                    \n" +
-"                    <li  class = \"nav-item  col-sm-2\">\n" +
+"                    <li  class = \"nav-item  \">\n" +
 "                        \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-6\">\n" +
+"                    <li  class = \"nav-item \">\n" +
 "                       \n" +
 "                       \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-2 \">\n" +
+"                    <li  class = \"nav-item   \">\n" +
 "\n" +
 "                    </li>";
     if (!LoginManager.isUserLoggedIn(session))
@@ -38,10 +38,10 @@ if (LoginManager.isUserLoggedIn(session))
      ut=LoginManager.getCurrentUserType(session);
     if (LoginManager.isUserAdmin(session))//if(ut.equals("Admin"))
     {
-        menu="<li class = \"nav-item active col-sm-1 \"> \n" +
+        menu="<li class = \"nav-item active  \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
-"                    <li class=\"nav-item dropdown  col-sm-1\">\n" +
+"                    <li class=\"nav-item dropdown  \">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >UserType</button>\n" +
@@ -54,30 +54,33 @@ if (LoginManager.isUserLoggedIn(session))
 "\n" +
 "                     </li>\n" +
 "                     <!-- Dropdown -->\n" +
-"                     <li class=\"nav-item dropdown  col-sm-1\">\n" +
+"                     <li class=\"nav-item dropdown  \">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >Book</button>\n" +
 "                            <div class=\"dropdown-content\">\n" +
 "                                <a href=\"book.jsp\">Book Entry</a>\n" +
 "                                <a href=\"Bookupdate.jsp\">Book Update</a>\n" +
-"                                <a href=\"#\">Book Delete</a>\n" +
+"                                <a href=\"Bookdelete.jsp\">Book Delete</a>\n" +
 "                            </div>\n" +
 "                        <!--</div>-->\n" +
 "\n" +
 "                     </li>\n" +
 "                     \n" +
-"                    <li  class = \"nav-item  col-sm-1\"> \n" +
+"                    <li  class = \"nav-item  \"> \n" +
 "                        <a class=\"nav-link\" href=\"Member.jsp\"> Register </a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-2\">\n" +
+"                    <li  class = \"nav-item  \">\n" +
 "                        <a class=\"nav-link \" href=\"bookissue.jsp\"> Book Issue </a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-6\">\n" +
+"                    <li  class = \"nav-item  \">\n" +
+"                        <a class=\"nav-link \" href=\"bookreturntable.jsp\">Return</a>\n" +
+"                    </li>\n" +
+"                    <li  class = \"nav-item    \">\n" +
 "                       \n" +
 "                       \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-2 \">\n" +
+"                    <li  class = \"nav-item   \">\n" +
 "\n" +
 "                    </li>";
     }
@@ -105,7 +108,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                        <a class=\"nav-link\" href=\"Member.jsp\"> Register </a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item  col-sm-1\">\n" +
-"                        <a class=\"nav-link \" href=\"bookreturn.jsp\">Return</a>\n" +
+"                        <a class=\"nav-link \" href=\"bookreturntable.jsp\">Return</a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item  col-sm-1\">\n" +
 "                        <a class=\"nav-link \" href=\"bookissue.jsp\">Issue</a>\n" +
@@ -121,32 +124,32 @@ if (LoginManager.isUserLoggedIn(session))
     }
     else
     {
-        menu="<li class = \"nav-item active col-sm-1 \"> \n" +
+        menu="<li class = \"nav-item active  \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
-"                    <li class=\"nav-item dropdown  col-sm-1\">\n" +
-"                        <a class=\"nav-link\" href=\"#\">History</a>\n" +
+"                    <li class=\"nav-item dropdown  \">\n" +
+"                        <a class=\"nav-link\" href=\"memberHistory.jsp\">History</a>\n" +
 "                        \n" +
 "\n" +
 "                     </li>\n" +
 "                     <!-- Dropdown -->\n" +
-"                     <li class=\"nav-item dropdown  col-sm-2\">\n" +
-"                        <a class=\"nav-link\">Books to Return </a>\n" +
+"                     <li class=\"nav-item dropdown  \">\n" +
+"                        <a class=\"nav-link\" href=\"memberBooksToReturn.jsp\">Books to Return </a>\n" +
 "                        \n" +
 "\n" +
 "                     </li>\n" +
 "                     \n" +
-"                    <li  class = \"nav-item  col-sm-2\"> \n" +
+"                    <li  class = \"nav-item  \"> \n" +
 "                        <a class=\"nav-link\">About Us</a>\n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-1\">\n" +
+"                    <li  class = \"nav-item  \">\n" +
 "                        \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-4\">\n" +
+"                    <li  class = \"nav-item  \">\n" +
 "                       \n" +
 "                       \n" +
 "                    </li>\n" +
-"                    <li  class = \"nav-item  col-sm-1 \">\n" +
+"                    <li  class = \"nav-item   \">\n" +
 "\n" +
 "                    </li>";
         
@@ -174,7 +177,7 @@ if (LoginManager.isUserLoggedIn(session))
                 </button>
                 <!--Navbar links-->
                 <div class="collapse navbar-collapse col-sm-10 " id="collapsibleNavbar">
-                <ul class ="navbar-nav container-fluid">
+                <ul class ="navbar-nav">
 		
                     <%=menu%>
                 </ul>

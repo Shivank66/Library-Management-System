@@ -20,6 +20,9 @@
           background-color:#011844;
           color:white;
           height:300px;
+                           
+                                   
+                
       }
       .text-color
       {
@@ -170,6 +173,15 @@ margin-left: 4px;
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: ;}
-
+.dropdown:hover .dropbtn {}
+body{
+    min-height:800px;
+}
+.minheight{
+        min-height: 400px;
+    }
+    .table1{
+        margin-top: 50px;
+        margin-bottom:50px;
+    }
   </style>
