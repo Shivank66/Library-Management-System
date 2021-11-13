@@ -9,14 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
-import loginpackage.LoginManager;
 import validationspackage.MemberNotFoundException;
 /**
  *
  * @author maury
  */
-public class Member {
-    private int memberno=-1;
+public class Clerk {
+    private int clerk=-1;
     private int usertypeno;
     private String firstName="";
     private String lastName="";
@@ -26,7 +25,7 @@ public class Member {
     private String validTillDate="";
     private int SiteUserNo;
 
-    public Member(int usertypeno,String firstname,String lastname,String address,String mobile,String regDate, String validTillDate,int SiteUserNo) {
+    public Clerk(int usertypeno,String firstname,String lastname,String address,String mobile,String regDate, String validTillDate,int SiteUserNo) {
     this.usertypeno=usertypeno;
     this.firstName=firstname;
     this.lastName=lastname;
@@ -37,7 +36,7 @@ public class Member {
     this.SiteUserNo=SiteUserNo;
     }
 
-    public Member(HttpSession session, int memberno) throws SQLException, MemberNotFoundException {
+    public Clerk(HttpSession session, int memberno) throws SQLException, MemberNotFoundException {
         PreparedStatement statement=DbConfig.getPreparedStatement("select * from members where memberno = ?",session);
         statement.setInt(1, memberno );
         ResultSet rs= statement.executeQuery();
@@ -154,16 +153,9 @@ public static int getNewId(HttpSession session) throws SQLException
     public void save(HttpSession session) throws SQLException, MemberNotFoundException
     {
         if(isIdExisting( session,  memberno))
-        {update(session);
-        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
-            ActivityLog ob=new ActivityLog(a,"Member no. "+memberno+" Updated",session);
-            ob.save(session);}
+            update(session);
         else
-        {insert(session);
-        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
-            ActivityLog ob=new ActivityLog(a,"Member no. "+memberno+" added with Siteuserno "+SiteUserNo,session);
-            ob.save(session);
-        }
+        insert(session);
     }
     private static boolean isIdExisting(HttpSession session,  int id) throws SQLException
     {

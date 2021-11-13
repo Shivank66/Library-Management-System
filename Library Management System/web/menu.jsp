@@ -1,4 +1,5 @@
 <%@page import="loginpackage.LoginManager"%>
+
 <%
 
     String siteusername=LoginManager.getCurrentUser(session);
@@ -23,14 +24,14 @@
 "                    </li>\n" +
 "                    <li class=\"nav-item   \">\n" +
 "                            \n" +
-"                        <a class=\"nav-link\" href=\"www.iiitbh.ac.in/index.php/contact-us\">About Us</a>\n" +
+"                        <a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\" target=\"IIIT\">About Us</a>\n" +
 "\n" +
 "                     </li>\n" +
 "                     <!-- Dropdown -->\n" +
 "                     <li class=\"nav-item dropdown  \">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
-"                         <>\n" +
+"                         \n" +
 "                        <!--</div>-->\n" +
 "\n" +
 "                     </li>\n" +
@@ -48,7 +49,7 @@
 "                    </li>";
     if (!LoginManager.isUserLoggedIn(session))
     {
-        login="<a href=\"loginmodal.jsp\" >Login</a>";
+        login="<div class=\"container-fluid\"><div class=\"col-sm-6\"></div><button class=\" col-sm-6 container btn btn-primary\"  ><a style=\"color:white\" href=\"loginmodal.jsp\">Login</button></a    ></div>";
         //password_change="";
     }
 if (LoginManager.isUserLoggedIn(session))
@@ -60,6 +61,9 @@ if (LoginManager.isUserLoggedIn(session))
         menu="<li class = \"nav-item active  \"> \n" +
 "                        <a class=\"nav-link\" href=\"Index.jsp\"> Home </a>\n" +
 "                    </li>\n" +
+"<li class = \"nav-item   \"> \n" +
+"                        <a class=\"nav-link\" href=\"ActivityLogTable.jsp\"> Activity </a>\n" +
+"                    </li>\n"+
 "                    <li class=\"nav-item dropdown  \">\n" +
 "                            \n" +
 "                        <!--<div class=\"dropdown\">-->\n" +
@@ -96,7 +100,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                        <a class=\"nav-link \" href=\"bookreturntable.jsp\">Return</a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item    \">\n" +""
-                + "<a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\">About Us</a>\n"+
+                + "<a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\" target=\"IIIT\">About Us</a>\n"+
 "                       \n" +
 "                       \n" +
 "                    </li>\n" +
@@ -136,7 +140,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                    \n" +
 "                    <li  class = \"nav-item  \">\n" +
 "                       \n" +
-"                       <a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\">About Us</a>\n" +
+"                       <a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\" target=\"IIIT\">About Us</a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item  \">\n" +
 "\n" +
@@ -160,7 +164,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                     </li>\n" +
 "                     \n" +
 "                    <li  class = \"nav-item  \"> \n" +
-"                        <a href=\"https://www.iiitbh.ac.in/index.php/contact-us\" target=\"\" class=\"nav-link\">About Us</a>\n" +
+"                        <a href=\"https://www.iiitbh.ac.in/index.php/contact-us\" target=\"IIIT\" class=\"nav-link\">About Us</a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item  \">\n" +
 "                        \n" +
@@ -183,8 +187,30 @@ if (LoginManager.isUserLoggedIn(session))
 %>
 
 
-            <div class="row">
-            <nav class="col-sm-12 navbar navbar-expand-sm bg-dark navbar-dark container-fluid " ><!--Navigation bar-->
+            <!--******************************************body row 1 banner ***********************************************-->
+            <div class="row" >
+                
+                <div class="col-sm-1">
+                    <img src="images/Logo.png" style="width:200px;padding:20px;" >
+                </div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-6">
+                    <center><h1>Indian Institute of Information Technology Bhagalpur</h1></center>
+                    <center><h3>Library Management System</h3></center>
+                </div>
+                <div class="col-sm-1"></div>
+                    
+                
+                
+                <div class="col-sm-2">
+                    <img src="images/logo2.png" style="width:200px;padding:20px;" >
+                </div>
+                    
+                
+            </div><!--body row 1 banner end-->
+            
+            <div class="row sticky bottom-shadow">
+            <nav class="  col-sm-12 navbar navbar-expand-sm bg-dark navbar-dark container-fluid " ><!--Navigation bar-->
                 <!-- navbar is just to define navigation bar
                 navbar-expand-sm arranges link in horizontal order
                 bg-dark background color dark 

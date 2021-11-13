@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import validationspackage.BookNotFoundException;
 import java.sql.ResultSet;
 import javax.servlet.http.HttpSession;
+import loginpackage.LoginManager;
 
 public class Book {
     
@@ -93,9 +94,18 @@ private String bookname,publisher,author,edition;
     public void save(HttpSession session) throws SQLException, BookNotFoundException
     {
         if(isIdExisting(session,   bookid))
+        {  
             update(session);
+            int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Book "+getBookid()+" Updated",session);
+            ob.save(session);
+       
+        }
         else
-        insert(session);
+        {insert(session);
+        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Book "+getBookid()+" Inserted",session);
+            ob.save(session);}
     }
     private static boolean isIdExisting(HttpSession session,   int id) throws SQLException
     {
@@ -143,6 +153,9 @@ public void delete(HttpSession session) throws SQLException
     PreparedStatement statement=DbConfig.getPreparedStatement("delete from books where bookid=?",session);
     statement.setString(1,this.bookid+"");
     statement.executeUpdate();
+    int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Book "+getBookid()+" deleted",session);
+            ob.save(session);
     
     
     }

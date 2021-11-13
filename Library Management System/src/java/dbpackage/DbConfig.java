@@ -33,7 +33,7 @@ public static String getTable(String query,String extra_column_name,String colum
     {
         Connection connection=getConnection(session);
         PreparedStatement statement=connection.prepareStatement(query);
-        String output="<table class='table-striped table-hover' >\n";
+        String output="<table id=\"tableid\" name=\"tableid\" class='table-striped table-hover' >\n";
         ResultSet rs=statement.executeQuery();
         ResultSetMetaData rsmd=rs.getMetaData();
         int n= rsmd.getColumnCount();

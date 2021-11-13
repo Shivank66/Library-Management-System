@@ -6,6 +6,7 @@
     String alert="";
     //String sbt="";
     String check="";
+    String wrong="";
     //try{
        // if(LoginManager.protectPage(response, session)){
          //   login="logged in";
@@ -29,11 +30,14 @@
         username=request.getParameter("usr");
         password=request.getParameter("pwd");
         boolean b=LoginManager.doLogin(username, password, session, response);
-        out.println(b);
+        //out.println(b);
          if(b){
              
               alert = validationspackage.AlertsAndMessages.showSuccess("Logged in!!", "") ;
             }
+         else
+             wrong="<div class=\"alert alert-danger\" role=\"alert\" style=\"padding:1px; font-size:15px;\"> "
+                     +"Invalid UserId or Password!<button style=\"padding-left:4px; padding-right:5px;  \" type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>";
          }
        
         
@@ -111,6 +115,9 @@ box-shadow: 0 0 0 0 !important;
 .remember{
 color: white;
 }
+.inavlid{
+    color: #ff0033;
+}
 
 .remember input
 {
@@ -180,11 +187,17 @@ margin-left: 4px;
 						</div>
 						<input type="password" id="pwd" name="pwd" class="form-control" placeholder="password">
 					</div>
+                              
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
+					</div>
+                                <br>
+                                <br>
+                                  <div class="row align-items-center invalid ">
+                                    <div style="padding-left: 85px; color:#990000; font-size: 21px; " class="align-items-center invalid"><%=wrong%></div>
 					</div>
 				</form>
 			

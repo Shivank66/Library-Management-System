@@ -56,7 +56,7 @@
         b.setEdition(edition);
         b.setPublisher(publisher);
         b.setPrice(price);
-        b.save(session);
+        //b.save(session);
         b.delete(session);
         alert=validationspackage.AlertsAndMessages.showWarning("Success!!", "Book Deleted");
         

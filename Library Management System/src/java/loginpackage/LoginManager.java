@@ -1,5 +1,6 @@
 package loginpackage;
 
+import bookpackage.ActivityLog;
 import dbpackage.DbConfig;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +14,13 @@ public class LoginManager {
     {
         try
         {
+            int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Logged Out",session);
+            ob.save(session);
             session.invalidate();
+            
             response.sendRedirect(loginpage);
+            
             return true;
         }
         catch(Exception ex)
@@ -121,6 +127,9 @@ public class LoginManager {
            
             
             response.sendRedirect(homepage);
+            int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Logged In",session);
+            ob.save(session);
             return true;
             
             

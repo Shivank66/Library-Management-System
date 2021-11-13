@@ -8,7 +8,14 @@
         siteuserno=LoginManager.siteuserno(LoginManager.getCurrentUser(session),session);
         memberno=Member.getMembernoBySiteUserno(Integer.parseInt(siteuserno), session);
          query="select * from bookissue where userid="+memberno+"and actualreturndate is not null";
-          table=dbpackage.DbConfig.getTable(query, "", "", "", session);
+         try
+         {
+         table=dbpackage.DbConfig.getTable(query, "", "", "", session);
+         }
+         catch(Exception ex)
+         {
+             table="NO BOOK ISSUE RECORD";
+         }
     }   
     catch(Exception ex){
         out.println(ex.getMessage());

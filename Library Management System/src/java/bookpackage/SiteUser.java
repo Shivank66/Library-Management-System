@@ -107,7 +107,10 @@ public static int getNewId(HttpSession session) throws SQLException
     public void save(HttpSession session) throws SQLException, Siteuserexception
     {
         if(isIdExisting( session,  userno))
-            update(session);
+        {update(session);
+        
+        
+        }
         else
         insert(session);
     }

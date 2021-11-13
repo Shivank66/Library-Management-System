@@ -19,7 +19,8 @@
       .footer{
           background-color:#011844;
           color:white;
-          height:300px;
+          
+          min-height:300px;
                            
                                    
                 
@@ -184,4 +185,49 @@ body{
         margin-top: 50px;
         margin-bottom:50px;
     }
+    .sticky{
+        
+        position: sticky;
+        top: 0;
+        z-index: 70;
+    }
+    .bottom-shadow
+    {
+        box-shadow:0px 5px 10px black;
+        
+    }
+    
   </style>
+  <script>
+    function Search( textboxid,tableid,recordcounttext) {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById(textboxid);
+        filter = input.value.toUpperCase();
+
+
+
+        table = document.getElementById(tableid);
+        tr = table.getElementsByTagName("tr");
+        var noofrows = tr.length;
+        var count = 0;
+        for (i = 1; i <= noofrows - 1; i++) {
+            var noofcols = tr[i].getElementsByTagName("td").length;
+            var textdata = "";
+            for (j = 0; j <= noofcols - 1; j++) {
+                currenttd = tr[i].getElementsByTagName("td")[j];
+                if (currenttd) {
+                    textdata += currenttd.textContent || currenttd.innerText;
+                }
+            }
+            //  alert(textdata);
+
+            if (textdata.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                count++;
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+        document.getElementById(recordcounttext).value = count;
+    } 
+    </script>

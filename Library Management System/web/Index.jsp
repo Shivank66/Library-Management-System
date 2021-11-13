@@ -1,29 +1,7 @@
 <%@include file="header.jsp"%>
     </head>
     <body>
-        <div class="container-fluid"><!--body container-->
-            <!--******************************************body row 1 banner ***********************************************-->
-            <div class="row" >
-                
-                <div class="col-sm-1">
-                    <img src="images/Logo.png" style="width:200px;padding:20px;" >
-                </div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-6">
-                    <center><h1>Indian Institute of Information Technology Bhagalpur</h1></center>
-                    <center><h3>Library Management System</h3></center>
-                </div>
-                <div class="col-sm-1"></div>
-                    
-                
-                
-                <div class="col-sm-2">
-                    <img src="images/logo2.png" style="width:200px;padding:20px;" >
-                </div>
-                    
-                
-            </div><!--body row 1 banner end-->
-            
+       
             <!--************************************************body row 2  ***********************************************-->
             <%@include file='menu.jsp'%>
             <!--body row 2 ends -->

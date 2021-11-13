@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
+import loginpackage.LoginManager;
 import validationspackage.BookNotFoundException;
 
 /**
@@ -58,9 +59,19 @@ private String UserTYPE;
     public void save(HttpSession session) throws SQLException, BookNotFoundException
     {
         if(isIdExisting( session,  Usertypeno))
+        { UserType ob1=new UserType(session,Usertypeno);
+        String OldUserTypeName=ob1.getUserTYPE();
             update(session);
+        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Usertype Updated from "+OldUserTypeName+ " to "+UserTYPE+" references usertypeno "+Usertypeno,session);
+            ob.save(session);
+        
+        }
         else
-        insert(session);
+        {insert(session);
+        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Usertype added "+Usertypeno,session);
+            ob.save(session);}
     }
     private static boolean isIdExisting(HttpSession session,  int id) throws SQLException
     {
@@ -75,6 +86,7 @@ private void insert(HttpSession session) throws SQLException
    
     
     statement.executeUpdate();
+    
     this.Usertypeno=getNewId(session);   
 }
 

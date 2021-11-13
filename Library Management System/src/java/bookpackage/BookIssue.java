@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;    
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
+import loginpackage.LoginManager;
 import static oracle.sql.DATE.getCurrentDate;
    
    
@@ -59,7 +60,7 @@ public class BookIssue {
        // this.dateIssue = dateIssue;
         //this.dateExpected = dateExpected;
        // this.dateActual = dateActual;
-        this.rmks ="" + rs.getObject("Remarks");;
+        this.rmks ="" + rs.getObject("Remarks");
         this.fine =0 ;
            
     }
@@ -136,9 +137,18 @@ public class BookIssue {
     public void save(HttpSession session) throws SQLException
     {
         if(isIdExisting(session, receipt))
-            update(session);
+        { update(session);
+        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Book "+getBookid()+" Returned with Receipt "+getReceipt(),session);
+            ob.save(session);
+        
+        }
         else
-        insert(session);
+        {insert(session);
+        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Book "+getBookid()+" Issued with Receipt "+getReceipt(),session);
+            ob.save(session);
+        }
     }
     private void insert(HttpSession session) throws SQLException
 {
@@ -151,7 +161,7 @@ public class BookIssue {
     statement.setString(6, rmks);
     statement.setString(7, fine+"");
     statement.executeUpdate();
-    this.bookid=  getNewId(session);   
+    this.receipt=  getNewId(session);   
 }
     private static int getNewId(HttpSession session) throws SQLException
 {
@@ -179,6 +189,10 @@ public class BookIssue {
    LocalDateTime now = LocalDateTime.now();  
    return dtf.format(now);  
 } 
+   public static String getCurrentDateANdTime() {    
+  // DateTimeFormatter dtf = DateTimeFormatter.ofPattern;  
+   LocalDateTime now = LocalDateTime.now();  
+   return (now)+"";}
     public static String getExpectedReturnDate() {    
    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd");  
    LocalDateTime now = LocalDateTime.now().plusDays(15);  
@@ -217,5 +231,7 @@ System.out.println(datebig);
           return Integer.parseInt("" + rs.getString(1)); 
   
   }
+  
+  
    
 }
