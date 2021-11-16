@@ -73,13 +73,14 @@
 	
 	
 	<div class="row">
-		<div class="col-md-6">
+                <div class="col-md-2"></div>
+		<div class="col-md-4">
                    <div class="form-group">
 			Current Password  <br>
                         <input type="text"  class="input form-control" value="<%=currtype%>" placeholder="Enter User Type" name="typename" id="typename" >
 			</div>
 		</div>
-		<div class ="col-md-6">
+		<div class ="col-md-4">
 		 	
 			
 			<div class="form-group">
@@ -88,6 +89,7 @@
 			</div>
 			
 		</div>
+                 <div class="col-md-2"></div>
 		</div>
     <div class="row">
 		<div class="col-md-5 form-group">

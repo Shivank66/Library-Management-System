@@ -44,6 +44,7 @@
             String remarks="";
             String disabler="";
             int fine=0;
+            int xfine=0;
             
             String alert = "";
             //String check=request.getParameter("check");
@@ -79,6 +80,7 @@
     datere=b1.getDateExpected();
     datera=b1.getDateActual();
     fine=BookIssue.fine(datere, datera, fine_per_day);
+    xfine=b1.getExtrafine();
     Book book= new Book(bid,session);
     price =""+ book.getPrice();
     remarks=b1.getRmks();
@@ -101,9 +103,11 @@
       price=request.getParameter("pri")+"";
       remarks=request.getParameter("rmks")+"";
       uid=Integer.parseInt(request.getParameter("userId")+"");
+      xfine=Integer.parseInt(request.getParameter("xfine")+"");
       BookIssue b2=new BookIssue(Rid,session);
       b2.setDateActual(datera);
       b2.setFine(fine);
+      b2.setExtrafine(xfine);
       b2.setRmks(remarks);
       Book obj=new Book(bid,session);
       obj.setLocation(0);
@@ -241,8 +245,8 @@ else
 		</div>
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
-			Fine<br>
-                        <input type="text" class="input form-control " name="fine"  value="<%=fine%>" id="fine" readonly>
+			Price<br>
+                                <input type="text" class="input form-control" name="pri" id="pri" value="<%=price%>" readonly>
 			</div>
 		</div>
 		<div class ="col-md-4 form-group">
@@ -262,22 +266,33 @@ else
             <div class="col-md-2">
 		</div>
 		<div class="col-md-4">
+                    
                     <div class="form-group">
-				Price<br>
-                                <input type="text" class="input form-control" name="pri" id="pri" value="<%=price%>" readonly>
+                        Fine<br>
+                        <input type="text" class="input form-control " name="fine"  value="<%=fine%>" id="fine" readonly>
+				
 		
                     </div>
                 </div>
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
-				Remark<br>
-                                <input type="text" class="input form-control" name="rmks" id="rmks" value="<%=remarks%>" placeholder="Enter Remark if Any">
+                            Extra Fine<br>
+                <input type="text" class="input form-control" name="xfine" id="xfine" value="<%=xfine%>" >
+				
 			</div>
 		</div>
 		
 		<div class="col-md-2">
 		</div>
 	</div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 form-group">
+                Remark<br>
+                                <input type="text" class="input form-control" name="rmks" id="rmks" value="<%=remarks%>" placeholder="Enter Remark if Any">
+            </div>
+            <div class="col-md-4"></div>
+        </div>
 	<div class="row">
 		<div class="col-md-5 form-group">
 		
@@ -292,9 +307,7 @@ else
 		</div>
                 
 	</div>
-        <div class="row">
-            
-        </div>
+
 	
 
 	

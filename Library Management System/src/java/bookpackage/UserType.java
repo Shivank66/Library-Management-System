@@ -122,7 +122,40 @@ public static String dropdown(HttpSession session) throws SQLException{
             //String nam="" + rs.getObject(2);
             String usertypeno="" + rs.getObject(1);
             String usertype=""+rs.getObject(2);
+            if( usertype.equals("Clerk") || usertype.equals("clerk") ||usertype.equals("Admin") || usertype.equals("admin"))
+            {
+                continue;
+            }
             output+="<option value=\""+usertypeno+"\">"+usertype+"</option>" +"\n";
+            
+           
+                
+        }
+        output+="</Select>\n</div>";
+        return output;
+        
+    }
+public static String dropdownClerk(HttpSession session) throws SQLException{
+   PreparedStatement statement=DbConfig.getPreparedStatement("Select * from usertypes",session); 
+    String output="<div  >\n<Select class=\"form-control\" id=\"userTypeno\" name=\"userTypeno\" placeholder=\"UserType\">\n";
+   
+        ResultSet rs=statement.executeQuery();
+        ResultSetMetaData rsmd=rs.getMetaData();
+      //  int n= rsmd.getColumnCount();
+      //  <option value="1">Member</option>
+        
+           
+        while(rs.next())
+        {
+            
+            //String nam="" + rs.getObject(2);
+            String usertypeno="" + rs.getObject(1);
+            String usertype=""+rs.getObject(2);
+            if( usertype.equals("Clerk") || usertype.equals("clerk"))
+            {
+              output+="<option value=\""+usertypeno+"\">"+usertype+"</option>" +"\n";
+            }
+            
             
            
                 

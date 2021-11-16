@@ -1,9 +1,7 @@
 <%@page import="bookpackage.BookIssue"%>
-<%
-     
-        if(!(LoginManager.protectPageAdminClerk(response,session)))
-       return;
-%>
+<%@page import="bookpackage.Clerk"%>
+<%@page import="loginpackage.LoginManager"%>
+
 <%@page import="bookpackage.UserType"%>
 <%@page import="bookpackage.SiteUser"%>
 <%@page import="bookpackage.Member"%>
@@ -12,18 +10,16 @@
     String result="";
     String drop="";
     String alert="";
-    String nam1="",nam2="",mobile="",address="",dateR="",dateE="",username="",password="",dateV="";
+    String nam1="",nam2="",mobile="",address="",dateR="",dateE="",username="",password="";
     int userno=0,usertypeno=0;
     String curdate = BookIssue.getCurrentDate();
+    String date1="value=\""+curdate+"\"";
     
-    dateR="value=\""+curdate+"\"";
-    String regdateExp=BookIssue.getExpectedReturnDate(365);
-    dateV="value=\""+regdateExp+"\"";
     String check=request.getParameter("check");
     boolean isPostback = false;
     if(check!=null)
         isPostback=true;
-    drop=UserType.dropdown(session);
+    drop=UserType.dropdownClerk(session);
     if(isPostback)
     {
         try{
@@ -32,14 +28,15 @@
      mobile=request.getParameter("mob");
      address=request.getParameter("addr");
      dateR=request.getParameter("dateR");
-     dateE=request.getParameter("dateV");
+     //dateE=request.getParameter("dateV");
      username=request.getParameter("uName");
      password=request.getParameter("pass");
      usertypeno=Integer.parseInt(""+request.getParameter("userTypeno"));
     SiteUser s=new SiteUser(username,password,usertypeno,"Active");
      s.save(session);
      userno=s.getUserno();
-     Member m=new Member(usertypeno,nam1,nam2,address,mobile,dateR,dateE,userno);
+    
+     Clerk m=new Clerk(userno,nam1,nam2,address,mobile,dateR,usertypeno);
      m.save(session);
     
       alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Data Inserted");
@@ -114,7 +111,7 @@ window.onload= function () {
 <body >
      <%@include file='menu.jsp'%>
 <!--!-->
-<form action="Member.jsp" method="post">
+<form action="Clerk.jsp" method="post">
     <div class="col-sm-12">
             <%=alert%>
         </div>
@@ -127,7 +124,7 @@ window.onload= function () {
 		
 		</div>
 		<div class="col-md-6 " style="padding-left:80px">
-			<h1>Member Registration </h1>
+			<h1>Clerk Registration </h1>
 		</div>
 		<div class="col-md-3">	
 		
@@ -184,34 +181,22 @@ window.onload= function () {
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
 			Registration Date<br>
-                        <input type="date" class="input form-control " id="dateR" name="dateR" <%=dateR%> placeholder="Registration Date">
+                        <input type="date" class="input form-control " id="dateR" <%=date1%> name="dateR" placeholder="Registration Date">
 			</div>
 		</div>
-		<div class ="col-md-4 form-group">
-			<div class="form-group">
-			Registration Expiry Date<br>
-                        <input type="date" class="input form-control " id="dateV" name="dateV" <%=dateV%>>
-			</div>
-		</div>
+		
+			<div class ="col-md-4 form-group">
+                    Usertype<br>
+	
+                        <%=drop%>
+                        </div>
+		
 		<div class="col-md-2">
 		</div>
 	</div>
 	
 	
-	<div class="row">
-		<div class="col-md-4">
-		</div>
-		<div class ="col-md-4 form-group">
-		Usertype<br>
 	
-                    <%=drop%>
-		</div>
-		<div class ="col-md-2 form-group">
-			
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
         <div class="row">
 		<div class="col-md-2">
 		</div>
@@ -227,7 +212,7 @@ window.onload= function () {
                         <input type="text" class="input form-control " id="pass" name="pass" placeholder="Password" >
 			</div>
 		</div>
-		<div class="col-md-2">
+                    <div class="col-md-2">
 		</div>
 	</div>
 	

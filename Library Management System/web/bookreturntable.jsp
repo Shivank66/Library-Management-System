@@ -80,8 +80,8 @@ function Search(textboxid,tableid,recordcounttext) {
 		</div>
 		<div class="col-md-7 form-group">
 			<div class="form-group">
-			Book ID<br>
-                        <input type="text" class="input form-control " placeholder="Book ID" id="bid" name="bid" onkeyup="Search('bid','tableid','countid')" value="">
+			Search<br>
+                        <input type="text" class="input form-control " placeholder="Enter Anything to Search" id="bid" name="bid" onkeyup="Search('bid','tableid','countid')" value="">
 			</div>
 		</div>
                 <div class="col-md-1 form-group">

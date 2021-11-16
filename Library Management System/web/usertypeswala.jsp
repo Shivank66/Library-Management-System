@@ -74,8 +74,7 @@ border-radius:20px;
 border-style:solid;
 border-radius:10px;
 }*/
-body{
-background-color:#022140 ;    }
+
 .button {
   display: inline-block;
   padding: 15px 25px;
@@ -101,7 +100,7 @@ background-color:#022140 ;    }
 
 </style>
 </head>
-<body >
+<body class="container-fluid">
      <%@include file='menu.jsp'%>
 <div class="container">
     <div class="row">
@@ -165,6 +164,7 @@ background-color:#022140 ;    }
 	
                 
 </div>
+<%@include file='footer.jsp'%>
 </form>
     </body>
 </html>

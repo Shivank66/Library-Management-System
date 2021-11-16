@@ -31,11 +31,12 @@
             String datei;
             String datere;
             String date1="value=\""+BookIssue.getCurrentDate()+"\"";//new SimpleDateFormat("yyyy-mm-dd").parse(datei);
-            String date2="value=\""+BookIssue.getExpectedReturnDate()+"\"";//new SimpleDateFormat("yyyy-mm-dd").parse(datere);
+            String date2="value=\""+BookIssue.getExpectedReturnDate(15)+"\"";//new SimpleDateFormat("yyyy-mm-dd").parse(datere);
             
             String datera="";
             String remarks="";
             int fine=0;
+            int extrafine=0;
             
             String alert = "";
             String check=request.getParameter("check");
@@ -55,7 +56,7 @@
                     //datera = request.getParameter("dateA");
                     remarks = request.getParameter("rmks");
                     //fine = Integer.parseInt(request.getParameter("fin"));
-                    BookIssue b = new BookIssue(uid, bid, datei, datere, datera, remarks, fine);
+                    BookIssue b = new BookIssue(uid, bid, datei, datere, datera, remarks, fine, extrafine);
                     Book obj=new Book(bid,session);
                     int loc=obj.getLocation();
                     int Number_of_books=BookIssue.NoOfIssuedBooks(uid,session);

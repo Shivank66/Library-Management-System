@@ -1,8 +1,9 @@
 <%@include file="header.jsp"%>
     </head>
-    <body>
+    <body class="container-fluid">
+        
        
-            <!--************************************************body row 2  ***********************************************-->
+               <!--************************************************body row 2  ***********************************************-->
             <%@include file='menu.jsp'%>
             <!--body row 2 ends -->
             <!--************************************************body row 3 **********************************************-->
@@ -52,8 +53,9 @@
                     <span class="carousel-control-next-icon"></span>
                     </a>
 	    </div>
+            </div>
             <!--<div class="col-sm-1"></div>-->
-	  </div><!--body row 3 ends-->
+	  <!--body row 3 ends-->
           <!--**************************************************body row 4 ***********************************-->
           <div class="row" style="background-color:grey;margin-top:10px;" >
               <div class="col-sm-3 container"  >
@@ -88,7 +90,7 @@
               
               <div class="col-sm-3 container" >
                   <div class="col-sm-11" style="background-color:white; margin:20px;padding-top:1px; height:300px; box-shadow:0px 0px 10px black; border-radius:20px;">
-                        <div class="card_heading">
+                        <div class="card_heading">  
                         <h1>Latest Book</h1>
                         </div>
                         <ul>
@@ -116,19 +118,9 @@
 
           </div>
           <!--******************************************body row 5 footer**********************************-->
-          <div class="row footer">
-              <div class="col-sm-4">
-                  
-              </div>
-              <div class="col-sm-4">
-                  <br><br><br><br><br><br><br>
-                  Developed by: Rakesh Bhaiaya
-                  <br><br><br><br><br>
-              </div>
-              <div class="col-sm-4"></div>
-              
-          </div>
-         
-</div><!--body container ends-->
+          <%@include file="footer.jsp"%>
+          
+          
+<!--body container ends-->
 </body>
 </html>

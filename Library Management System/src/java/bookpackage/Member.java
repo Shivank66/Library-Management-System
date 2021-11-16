@@ -39,10 +39,11 @@ public class Member {
 
     public Member(HttpSession session, int memberno) throws SQLException, MemberNotFoundException {
         PreparedStatement statement=DbConfig.getPreparedStatement("select * from members where memberno = ?",session);
-        statement.setInt(1, memberno );
+        statement.setString(1, memberno+"" );
         ResultSet rs= statement.executeQuery();
        if(!rs.next())
            throw new MemberNotFoundException(memberno);
+       this.memberno=memberno;
        this.usertypeno=Integer.parseInt(""+rs.getObject(4));
         this.firstName=""+rs.getObject(2);
         this.lastName=""+rs.getObject(3);
@@ -50,7 +51,7 @@ public class Member {
         this.mobile=""+rs.getObject(8);
         this.regDate=""+rs.getObject(6);
         this.validTillDate=""+rs.getObject(7);
-        this.SiteUserNo=Integer.parseInt(""+rs.getObject(8));
+        this.SiteUserNo=Integer.parseInt(""+rs.getObject(9));
     }
     
 
@@ -132,7 +133,7 @@ public class Member {
 }
 private void update(HttpSession session) throws SQLException
     {
-    PreparedStatement statement=DbConfig.getPreparedStatement("update members set firstname=? , lastname= ?, usertypeno= ?, address= ?, regdate= ?, validtilldate= ?, mobile= ? where memberno=?",session);
+    PreparedStatement statement=DbConfig.getPreparedStatement("update members set firstname=? , lastname= ?, usertypeno= ?, address= ?, regdate= to_date(?,'yyyy-mm-dd'), validtilldate= to_date(?,'yyyy-mm-dd'), mobile= ? where memberno=?",session);
     statement.setString(1, this.firstName);
     statement.setString(2, this.lastName);
     statement.setString(3, (this.usertypeno)+"");
@@ -173,7 +174,7 @@ public static int getNewId(HttpSession session) throws SQLException
     }
    public static int getMembernoBySiteUserno(int situserno,HttpSession session) throws SQLException
    {
-       PreparedStatement  statement=DbConfig.getPreparedStatement("select memberno from members where siteuserno=?",session);
+       PreparedStatement  statement=DbConfig.getPreparedStatement("select * from members where siteuserno=?",session);
        statement.setString(1, ""+situserno);
     ResultSet rs=statement.executeQuery();
     rs.next();
@@ -181,8 +182,5 @@ public static int getNewId(HttpSession session) throws SQLException
        
    }
 
-    @Override
-    public String toString() {
-        return "Member{" + "memberno=" + memberno + ", usertypeno=" + usertypeno + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", mobile=" + mobile + ", regDate=" + regDate + ", validTillDate=" + validTillDate + '}';
-    }  
+     
 }

@@ -9,172 +9,182 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
+import loginpackage.LoginManager;
 import validationspackage.MemberNotFoundException;
 /**
  *
  * @author maury
  */
 public class Clerk {
-    private int clerk=-1;
-    private int usertypeno;
+    private int clerkno=-1;
+    private int SiteUserno=-1;
     private String firstName="";
     private String lastName="";
     private String address="";
     private String mobile="";
-    private String regDate="";
-    private String validTillDate="";
-    private int SiteUserNo;
+    private String registrationdate="";
+    private int usertypeno=-1;
+    
 
-    public Clerk(int usertypeno,String firstname,String lastname,String address,String mobile,String regDate, String validTillDate,int SiteUserNo) {
-    this.usertypeno=usertypeno;
+    public Clerk(int SiteUserno,String firstname,String lastname,String address,String mobile,String registrationdate,int usertypeno) {
+    this.SiteUserno=SiteUserno;
     this.firstName=firstname;
     this.lastName=lastname;
     this.address=address;
     this.mobile=mobile;
-    this.regDate=regDate;
-    this.validTillDate=validTillDate;
-    this.SiteUserNo=SiteUserNo;
+    this.registrationdate=registrationdate;
+    this.usertypeno=usertypeno;
     }
 
-    public Clerk(HttpSession session, int memberno) throws SQLException, MemberNotFoundException {
-        PreparedStatement statement=DbConfig.getPreparedStatement("select * from members where memberno = ?",session);
-        statement.setInt(1, memberno );
+    public Clerk(HttpSession session, int clerkno) throws SQLException, MemberNotFoundException {
+        PreparedStatement statement=DbConfig.getPreparedStatement("select * from clerk where clerkno = ?",session);
+        statement.setInt(1, clerkno );
         ResultSet rs= statement.executeQuery();
        if(!rs.next())
-           throw new MemberNotFoundException(memberno);
-       this.usertypeno=Integer.parseInt(""+rs.getObject(4));
-        this.firstName=""+rs.getObject(2);
-        this.lastName=""+rs.getObject(3);
+           throw new MemberNotFoundException(clerkno);
+       this.SiteUserno=Integer.parseInt(""+rs.getObject(2));
+        this.firstName=""+rs.getObject(3);
+        this.lastName=""+rs.getObject(4);
         this.address=""+rs.getObject(5);
-        this.mobile=""+rs.getObject(8);
-        this.regDate=""+rs.getObject(6);
-        this.validTillDate=""+rs.getObject(7);
-        this.SiteUserNo=Integer.parseInt(""+rs.getObject(8));
-    }
-    
-
-    public void setUsertypeno(int usertypeno) {
-        this.usertypeno = usertypeno;
+        this.mobile=""+rs.getObject(6);
+        this.registrationdate=""+rs.getObject(7);
+        this.usertypeno=Integer.parseInt(""+ rs.getObject(8));
+        
+        
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public int getClerkno() {
+        return clerkno;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+   
+
+    public int getSiteUserno() {
+        return SiteUserno;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public void setRegDate(String regDate) {
-        this.regDate = regDate;
-    }
-
-    public void setValidTillDate(String validTillDate) {
-        this.validTillDate = validTillDate;
-    }
-    
-
-    public int getMemberno() {
-        return memberno;
-    }
-
-    public int getUsertypeno() {
-        return usertypeno;
+    public void setSiteUserno(int SiteUserno) {
+        this.SiteUserno = SiteUserno;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
         return address;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getMobile() {
         return mobile;
     }
 
-    public String getRegDate() {
-        return regDate;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public String getValidTillDate() {
-        return validTillDate;
+    public String getRegistrationdate() {
+        return registrationdate;
     }
+
+    public void setRegistrationdate(String registrationdate) {
+        this.registrationdate = registrationdate;
+    }
+
+    
+    
+
+    
    private void insert(HttpSession session) throws SQLException
 {
-    PreparedStatement statement=DbConfig.getPreparedStatement("insert into members values(membersequence.nextVal,?,?,?,?,to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?)", session);
-    statement.setString(1, this.firstName);
-    statement.setString(2, this.lastName);
-    statement.setString(3, (this.usertypeno)+"");
+    PreparedStatement statement=DbConfig.getPreparedStatement("insert into clerk values(clerksequence.nextVal,?,?,?,?,?,to_date(?,'yyyy-mm-dd'),?)", session);
+    statement.setString(1, this.SiteUserno+"");
+    statement.setString(2, this.firstName);
+    statement.setString(3, this.lastName);
+    
     statement.setString(4, this.address);
-    statement.setString(5, this.regDate);
-    statement.setString(6, this.validTillDate);
-    statement.setString(7, this.mobile);
-    statement.setString(8,""+(this.SiteUserNo));
+
+    statement.setString(5, this.mobile);
+    statement.setString(6, this.registrationdate);
+    statement.setString(7,this.usertypeno+"");
+    
+
    
     
     statement.executeUpdate();
-    this.memberno=getNewId(session);   
+    this.clerkno=getNewId(session);   
 }
 private void update(HttpSession session) throws SQLException
     {
-    PreparedStatement statement=DbConfig.getPreparedStatement("update members set firstname=? , lastname= ?, usertypeno= ?, address= ?, regdate= ?, validtilldate= ?, mobile= ? where memberno=?",session);
-    statement.setString(1, this.firstName);
-    statement.setString(2, this.lastName);
-    statement.setString(3, (this.usertypeno)+"");
+    PreparedStatement statement=DbConfig.getPreparedStatement("update clerk set siteuserno = ? firstname=? , lastname= ?, address= ?,  mobile= ? ,registrationdate = to_date(?,'yyyy-mm-dd'),usertypeno = ? where clerkno=?",session);
+        statement.setString(1, this.SiteUserno+"");
+    statement.setString(2, this.firstName);
+    statement.setString(3, this.lastName);
+    
     statement.setString(4, this.address);
-    statement.setString(5, this.regDate);
-    statement.setString(6, this.validTillDate);
-    statement.setString(7, this.mobile);
-    //statement.setString(8,""+(this.SiteUserNo));
+
+    statement.setString(5, this.mobile);
+    statement.setString(6, this.registrationdate);
+    statement.setString(7,this.usertypeno+"");
+    statement.setString(8,""+(this.clerkno));
     statement.executeUpdate();
    
     }   
 public static int getNewId(HttpSession session) throws SQLException
 {
-    PreparedStatement  statement=DbConfig.getPreparedStatement("select max(memberno) from members",session);
+    PreparedStatement  statement=DbConfig.getPreparedStatement("select max(clerkno) from clerk",session);
     ResultSet rs=statement.executeQuery();
     rs.next();
     return Integer.parseInt("" + rs.getString(1));
 }
     public void save(HttpSession session) throws SQLException, MemberNotFoundException
     {
-        if(isIdExisting( session,  memberno))
+        if(isIdExisting( session,  clerkno))
+        {
+            int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"Clerk no "+ clerkno +" Updated",session);
+            ob.save(session);
             update(session);
+        }
         else
+        {
         insert(session);
+        int a=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+            ActivityLog ob=new ActivityLog(a,"New Clerk adde with clerkno "+ clerkno,session);
+            ob.save(session);
+        }
     }
     private static boolean isIdExisting(HttpSession session,  int id) throws SQLException
     {
-        PreparedStatement statement=DbConfig.getPreparedStatement("select * from members where memberno=?",session);
+        PreparedStatement statement=DbConfig.getPreparedStatement("select * from clerk where clerkno=?",session);
         statement.setString(1, "" + id);
         return statement.executeQuery().next();
     }
-   public static int getMembernoBySiteUserno(int situserno,HttpSession session) throws SQLException
+   public static int getClerknoBySiteUserno(int situserno,HttpSession session) throws SQLException
    {
-       PreparedStatement  statement=DbConfig.getPreparedStatement("select memberno from members where siteuserno=?",session);
+       PreparedStatement  statement=DbConfig.getPreparedStatement("select clerkno from clerk where siteuserno=?",session);
        statement.setString(1, ""+situserno);
     ResultSet rs=statement.executeQuery();
     rs.next();
-    return Integer.parseInt("" + rs.getString(1));
+    return Integer.parseInt("" + rs.getString(1))   ;
        
    }
 
-    @Override
-    public String toString() {
-        return "Member{" + "memberno=" + memberno + ", usertypeno=" + usertypeno + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", mobile=" + mobile + ", regDate=" + regDate + ", validTillDate=" + validTillDate + '}';
-    }  
+     
 }

@@ -1,3 +1,4 @@
+<%@page import="bookpackage.Member"%>
 <%@page import="bookpackage.BookIssue"%>
 <%@page import="loginpackage.LoginManager"%>
 <%@page import="bookpackage.Book"%>
@@ -6,14 +7,16 @@
     </head>
     <body>
         <%
+            String s ="";
+            int memberno=0;
             try
             {
-                BookIssue b= new BookIssue(51,session);
-                b.setDateActual("2021/12/12");
-                b.setRmks("remarksss");
-                b.setFine(1000);
-                b.save(session);
-                
+               // Member m = new Member(session,42);
+               // s= m+"";
+                int siteuserno=22;
+         memberno=Member.getMembernoBySiteUserno(Integer.parseInt(siteuserno+""), session);
+       System.out.println(memberno);
+       
         //Book b=new Book(100, 2, "Advance C", "Lanka Publisher", "Pappu", "One");
         //out.println(b);
        // Book b1=new Book(1);
@@ -31,6 +34,7 @@
                 out.println(ex.getMessage());
             }
         %>
+        <%=memberno%>
         <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -29,8 +29,9 @@ public class BookIssue {
     private String dateActual;
     private String rmks;
     private int fine;
+    private int extrafine=0;
 
-    public BookIssue( int memberno, int bookid, String dateIssue, String dateExpected, String dateActual, String rmks, int fine) {
+    public BookIssue( int memberno, int bookid, String dateIssue, String dateExpected, String dateActual, String rmks, int fine,int extrafine) {
         this.memberno = memberno;
         this.bookid = bookid;
         this.dateIssue = dateIssue;
@@ -38,6 +39,7 @@ public class BookIssue {
         this.dateActual = dateActual;
         this.rmks = rmks;
         this.fine = fine;
+        this.extrafine = extrafine;
     }
     
     public BookIssue(int receipt,HttpSession session) throws BookNotFoundException, SQLException {
@@ -62,6 +64,7 @@ public class BookIssue {
        // this.dateActual = dateActual;
         this.rmks ="" + rs.getObject("Remarks");
         this.fine =0 ;
+        this.extrafine=Integer.parseInt(rs.getObject("extrafine")+"");
            
     }
     
@@ -152,7 +155,7 @@ public class BookIssue {
     }
     private void insert(HttpSession session) throws SQLException
 {
-    PreparedStatement statement=DbConfig.getPreparedStatement("insert into BookIssue values(bookissuesequence.nextval,?,?,to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?)",session );
+    PreparedStatement statement=DbConfig.getPreparedStatement("insert into BookIssue values(bookissuesequence.nextval,?,?,to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?)",session );
     statement.setString(1, ""+memberno);
     statement.setString(2, ""+bookid);
     statement.setString(3, dateIssue);
@@ -160,6 +163,7 @@ public class BookIssue {
     statement.setString(5, dateActual);
     statement.setString(6, rmks);
     statement.setString(7, fine+"");
+    statement.setString(8, extrafine+"");
     statement.executeUpdate();
     this.receipt=  getNewId(session);   
 }
@@ -172,7 +176,7 @@ public class BookIssue {
 }
    private void update(HttpSession session) throws SQLException
     {
-    PreparedStatement statement=DbConfig.getPreparedStatement("update bookissue set userid=? , bookid=?, dateofissue=to_date(?,'yyyy-mm-dd'), expectedreturndate=to_date(?,'yyyy-mm-dd'), actualreturndate=to_date(?,'yyyy-mm-dd'), remarks=?, fine=? where receipt=?",session);
+    PreparedStatement statement=DbConfig.getPreparedStatement("update bookissue set userid=? , bookid=?, dateofissue=to_date(?,'yyyy-mm-dd'), expectedreturndate=to_date(?,'yyyy-mm-dd'), actualreturndate=to_date(?,'yyyy-mm-dd'), remarks=?, fine=?, extrafine=? where receipt=?",session);
     statement.setString(1, this.memberno+"");
     statement.setString(2, this.bookid+"");
     statement.setString(3, this.dateIssue+"");
@@ -180,9 +184,19 @@ public class BookIssue {
     statement.setString(5, this.dateActual);
     statement.setString(6, this.rmks);
     statement.setString(7, this.fine + "");
-    statement.setString(8, this.receipt+"");
+    statement.setString(8, this.extrafine+"");
+    statement.setString(9, this.receipt+"");
+    
     //statement.setString(8,""+(this.SiteUserNo));
     statement.executeUpdate();
+    }
+
+    public int getExtrafine() {
+        return extrafine;
+    }
+
+    public void setExtrafine(int extrafine) {
+        this.extrafine = extrafine;
     }
    public static String getCurrentDate() {    
    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd");  
@@ -193,9 +207,9 @@ public class BookIssue {
   // DateTimeFormatter dtf = DateTimeFormatter.ofPattern;  
    LocalDateTime now = LocalDateTime.now();  
    return (now)+"";}
-    public static String getExpectedReturnDate() {    
+    public static String getExpectedReturnDate(int a) {    
    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd");  
-   LocalDateTime now = LocalDateTime.now().plusDays(15);  
+   LocalDateTime now = LocalDateTime.now().plusDays(a);  
    return (dtf.format(now)); 
 } 
    public static int NoOfDays(String date1,String date2) throws ParseException {    
@@ -205,7 +219,7 @@ public class BookIssue {
   // LocalDateTime now1 = LocalDateTime.now();
    //System.out.println(datebig);
   // LocalDateTime now2=LocalDateTime.now();
-  //String string = "January 2, 2010";
+  //String string = "January 2, 200";
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
 LocalDate datebig = LocalDate.parse(date1, formatter);
 DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);

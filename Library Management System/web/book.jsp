@@ -26,7 +26,7 @@
             author=request.getParameter("Aut");
             publisher=request.getParameter("pub");
             edition=request.getParameter("Edi");
-            location=Integer.parseInt(request.getParameter("Loc"));
+            location=0;
             price=Integer.parseInt(request.getParameter("Pri"));
             Book b = new Book(bookName, publisher, author, edition, price, location);
         
@@ -36,6 +36,7 @@
          }       
         catch (Exception ex)
         {
+            System.err.println(ex);
             alert=validationspackage.AlertsAndMessages.showWarning("Warning!!", "Something went wrong");
         }
     }
@@ -113,7 +114,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-4">
 		</div>
 		<div class ="col-md-4 form-group">
 			<div class="form-group">
@@ -122,10 +123,7 @@
 			</div>
 		</div>
 		<div class ="col-md-4 form-group">
-			<div class="form-group">
-			Location<br>
-                        <input type="text" class="input form-control " id="Loc" name="Loc" placeholder="Location">
-			</div>
+			
 		</div>
 		<div class="col-md-2">
 		</div>

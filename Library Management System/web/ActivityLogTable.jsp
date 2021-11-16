@@ -5,7 +5,7 @@
 %>
 
 <%
-            String table=dbpackage.DbConfig.getTable("select * from ActivityLog","","","",session);
+            String table=dbpackage.DbConfig.getTable("select a.sno,a.siteuserno, s.SITEUSERNAME,a.activity,to_char(a.adate,'Dy,dd-Mon-yyyy.hh:mm AM') as \"DATE TIME\" from ActivityLog a join siteusers s on a.siteuserno=s.siteuserno order by sno desc","","","",session);
 %>
 <%@include file="header.jsp"%>
 </head>
@@ -38,17 +38,17 @@
 		</div>
 		<div class="col-md-7 form-group">
 			<div class="form-group">
-			Siteuser No<br>
-                        <input type="text" class="input form-control " placeholder="SiteUserId" id="bid" name="SiteUid" onkeyup="Search('bid','tableid','countid')" value="">
+			Search<br>
+                        <input type="text" class="input form-control " placeholder="Type anything to Search" id="bid" name="SiteUid" onkeyup="Search('bid','tableid','countid')" value="">
                         
 			</div>
 		</div>
                 <div class="col-md-1 form-group">
 			
-                    <input type="submit" class="button" style="margin-top: 20px; padding: 4px; font-size: 20px; box-shadow: 0 4px #AC7D0C;" name="cmd" value="  Search  ">
+                    
 		</div>
 		<div class="col-md-2">	
-		<input type="text" class="input form-control " placeholder="SiteUserId" id="countid" name="SiteUid" value="">
+		
 		</div>
         </div>
 	 

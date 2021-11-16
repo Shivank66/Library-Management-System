@@ -20,7 +20,7 @@ public class ActivityLog {
     }
     public void save(HttpSession session) throws SQLException
     {
-         PreparedStatement statement=DbConfig.getPreparedStatement("insert into ActivityLog values(activitylogsequence.nextVal,?,?,to_char(systimestamp,'dd-mm-yyyy hh12:mi:ss.FF.AM'))",session );
+         PreparedStatement statement=DbConfig.getPreparedStatement("insert into ActivityLog values(activitylogsequence.nextVal,?,?,sysdate)",session );
     statement.setString(1, siteuserno+"");
     statement.setString(2, activity);
     //statement.setString(3, Adate);

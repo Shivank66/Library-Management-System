@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="dbpackage.DbConfig"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="bookpackage.Member"%>
 <%
     String siteuserno="";
@@ -6,16 +9,18 @@
     String query="";
     try{
         siteuserno=LoginManager.siteuserno(LoginManager.getCurrentUser(session),session);
-        memberno=Member.getMembernoBySiteUserno(Integer.parseInt(siteuserno), session);
-         query="select * from bookissue where userid="+memberno+"and actualreturndate is not null";
-         try
-         {
+        memberno=Member.getMembernoBySiteUserno(Integer.parseInt(siteuserno+""), session);
+        
+        query="select * from bookissue where userid=\'"+memberno+"\'and actualreturndate is not null";
+      
+    //return Integer.parseInt("" + rs.getString(1));
+System.out.print(query);
+         
+         
          table=dbpackage.DbConfig.getTable(query, "", "", "", session);
-         }
-         catch(Exception ex)
-         {
-             table="NO BOOK ISSUE RECORD";
-         }
+         
+         
+        
     }   
     catch(Exception ex){
         out.println(ex.getMessage());
@@ -31,6 +36,7 @@
 <body class="container-fluid" >
  <%@include file="menu.jsp"%>
  <div class="container minheight ">
+     <%=query%>
     <div class="row table1">
         <%=table%>
     </div>

@@ -82,6 +82,7 @@ if (LoginManager.isUserLoggedIn(session))
 "                        <!--<div class=\"dropdown\">-->\n" +
 "                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >Book</button>\n" +
 "                            <div class=\"dropdown-content\">\n" +
+                " <a href=\"booktable.jsp\">Book list</a>\n"+
 "                                <a href=\"book.jsp\">Book Entry</a>\n" +
 "                                <a href=\"Bookupdate.jsp\">Book Update</a>\n" +
 "                                <a href=\"Bookdelete.jsp\">Book Delete</a>\n" +
@@ -89,16 +90,30 @@ if (LoginManager.isUserLoggedIn(session))
 "                        <!--</div>-->\n" +
 "\n" +
 "                     </li>\n" +
+                "                     <!-- Dropdown -->\n" +
+"                     <li class=\"nav-item dropdown  \">\n" +
+"                            \n" +
+"                        <!--<div class=\"dropdown\">-->\n" +
+"                         <button class=\"btn nav-link\" data-toggle=\"dropdown\" >Register</button>\n" +
+"                            <div class=\"dropdown-content\">\n" +
+"                                <a href=\"Clerk.jsp\">Clerk</a>\n" +
+"                                <a href=\"Member.jsp\">Member</a>\n" +
+"                            </div>\n" +
+"                        <!--</div>-->\n" +
+"\n" +
+"                     </li>\n" +
+                
 "                     \n" +
-"                    <li  class = \"nav-item  \"> \n" +
-"                        <a class=\"nav-link\" href=\"Member.jsp\"> Register </a>\n" +
-"                    </li>\n" +
+
 "                    <li  class = \"nav-item  \">\n" +
 "                        <a class=\"nav-link \" href=\"bookissue.jsp\"> Book Issue </a>\n" +
 "                    </li>\n" +
 "                    <li  class = \"nav-item  \">\n" +
 "                        <a class=\"nav-link \" href=\"bookreturntable.jsp\">Return</a>\n" +
 "                    </li>\n" +
+"                   <li  class = \"nav-item  \">\n" +
+"                        <a class=\"nav-link \" href=\"duelist.jsp\">Fine</a>\n" +
+"                    </li>\n"+
 "                    <li  class = \"nav-item    \">\n" +""
                 + "<a class=\"nav-link\" href=\"https://www.iiitbh.ac.in/index.php/contact-us\" target=\"IIIT\">About Us</a>\n"+
 "                       \n" +
@@ -136,6 +151,9 @@ if (LoginManager.isUserLoggedIn(session))
 "                    </li>\n" +
 "                    <li  class = \"nav-item  \">\n" +
 "                        <a class=\"nav-link \" href=\"bookissue.jsp\">Issue</a>\n" +
+"                    </li>\n" +
+                "                    <li  class = \"nav-item  \">\n" +
+"                        <a class=\"nav-link \" href=\"duelist.jsp\">Fine</a>\n" +
 "                    </li>\n" +
 "                    \n" +
 "                    <li  class = \"nav-item  \">\n" +

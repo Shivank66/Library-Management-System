@@ -58,7 +58,7 @@
 <%@page import="dbpackage.DbConfig"%>
         <title> EditUserType</title>
     </head>
- 
+ <body >
 
  <%@include file ="menu.jsp"%>
  <%=alert%>
