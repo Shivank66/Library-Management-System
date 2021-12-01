@@ -34,7 +34,7 @@
         <title> Payment</title>
         
     </head>
- <body>
+ <body class="container-fluid">
 
  <%@include file ="menu.jsp"%>
 

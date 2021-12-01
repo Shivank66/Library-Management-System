@@ -49,7 +49,7 @@ public class Clerk {
         this.mobile=""+rs.getObject(6);
         this.registrationdate=""+rs.getObject(7);
         this.usertypeno=Integer.parseInt(""+ rs.getObject(8));
-        
+        this.clerkno=clerkno;
         
     }
 

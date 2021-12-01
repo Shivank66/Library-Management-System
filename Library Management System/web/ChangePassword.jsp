@@ -8,6 +8,7 @@
     String disabledColor="";
     String result="";
     String alert="";
+    String oldpassword="";
     String currtype="";
     String check=request.getParameter("check");
     
@@ -20,12 +21,20 @@
         String typename=request.getParameter("typename");
         String newtype=request.getParameter("newtype");
         
-          
+        SiteUser s=new SiteUser(Integer.parseInt(LoginManager.getCurrentSiteUserno(session)),session);
+        oldpassword=s.getPassword();
+        if( oldpassword.equals(typename))
+        {
         SiteUser.ChangePassword(session,newtype);
           alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Password Updated");
           disabler="disabled";
           link="<a style=\"color:white;\" href=\"http://localhost:777/Library_Management_System/usertypetable.jsp\">Click to go back";
           disabledColor="style=\"background-color:grey;\"";
+        }
+        else
+        {
+        alert=validationspackage.AlertsAndMessages.showWarning("Warning!!","Old Password is wrong");
+        }
      }
      catch(Exception ex){
          alert=validationspackage.AlertsAndMessages.showWarning("Warning!!","User Type Name already exist,You can not Update type name to already existing type name");
@@ -44,11 +53,12 @@
 
 <%@include file="header.jsp"%>
 <%@page import="dbpackage.DbConfig"%>
-        <title> EditUserType</title>
+        <title> Change Password</title>
     </head>
  
 
  <%@include file ="menu.jsp"%>
+ <body class="container-fluid">
  <%=alert%>
 
 <div class="container cont ">
@@ -77,7 +87,7 @@
 		<div class="col-md-4">
                    <div class="form-group">
 			Current Password  <br>
-                        <input type="text"  class="input form-control" value="<%=currtype%>" placeholder="Enter User Type" name="typename" id="typename" >
+                        <input type="text"  class="input form-control" value="" placeholder="Enter User Type" name="typename" id="typename" >
 			</div>
 		</div>
 		<div class ="col-md-4">

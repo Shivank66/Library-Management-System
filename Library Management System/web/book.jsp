@@ -32,7 +32,7 @@
         
             b.save(session);
             bookid=b.getBookid();
-           alert=validationspackage.AlertsAndMessages.showSuccess("Success!!", "Data inserted ");
+           alert=validationspackage.AlertsAndMessages.showSuccess("Success!!", "Alloted Book Id <b>"+bookid+"</b>");
          }       
         catch (Exception ex)
         {
@@ -139,7 +139,7 @@
 		</div>
                 <div class="col-md-4 form-group">
 			
-			<input type="submit" class="button" name="cmd" value=" Register ">
+			<input type="submit" class="button" name="cmd" value=" Submit ">
 		</div>
 		<div class="col-md-2">	
 		

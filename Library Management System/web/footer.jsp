@@ -5,7 +5,8 @@
               </div>
               <div class="col-sm-4">
                   <br><br><br><br><br><br><br>
-                  Developed by: Rakesh Bhaiaya
+                  Developed by: Shivank Bhardwaj, Ravikant Sharma, Abhishek Maurya
+                  
                   <br><br><br><br><br>
               </div>
               <div class="col-sm-4"></div>

@@ -3,8 +3,15 @@
 <head>
 
   <meta charset="UTF-8">
+  
         
    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="shortcut icon" href="images/Logo.png" type="image/x-icon">
+   <meta name="theme-color" content="#308D46">
+   <meta name="image" property="og:image" content="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200x200-min.png">
+   <meta property="og:image:type" content="image/png">
+   <meta property="og:image:width" content="200">
+   <meta property="og:image:height" content="200">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

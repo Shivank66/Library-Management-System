@@ -141,7 +141,7 @@ private void update(HttpSession session) throws SQLException
     statement.setString(5, this.regDate);
     statement.setString(6, this.validTillDate);
     statement.setString(7, this.mobile);
-    //statement.setString(8,""+(this.SiteUserNo));
+    statement.setString(8,""+(this.memberno));
     statement.executeUpdate();
    
     }   

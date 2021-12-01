@@ -105,12 +105,13 @@
               <div class="col-sm-3 container" >
                   <div class="col-sm-11" style="background-color:white; margin:20px; padding-top:1px;height:300px; box-shadow:0px 0px 10px black; border-radius:20px;">
                         <div class="card_heading">
-                        <h1>Login Links</h1>
+                        <h1>Latest Books</h1>
                         </div>
                         <ul>
-                            <li><a href="#">Student</a></li>
-                            <li><a href="#">Librarian</a></li>
-                            <li><a href="#">Admin</a></li>
+                            <li>HC Verma</li>
+                            <li>Organics Chemistry</li>
+                            <li>Theory of Relativity</li>
+                            <li>Internet of Things</li>
                             
                         </ul>
                     </div>

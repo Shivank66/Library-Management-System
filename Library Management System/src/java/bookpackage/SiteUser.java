@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 import loginpackage.LoginManager;
+import validationspackage.MemberNotFoundException;
 import validationspackage.Siteuserexception;
 
 /*
@@ -32,6 +33,21 @@ public class SiteUser {
         this.password = password;
         this.userTypeno = userTypeno;
         this.status = status;
+    }
+    public SiteUser(int userno,HttpSession session) throws SQLException
+    {
+        PreparedStatement statement=DbConfig.getPreparedStatement("select * from siteusers where siteuserno = ?",session);
+        statement.setInt(1, userno );
+        ResultSet rs= statement.executeQuery();
+       if(rs.next())
+       {  //throw new MemberNotFoundException(clerkno);
+        this.userno=userno;
+        this.UserName=""+rs.getObject(2);
+        this.password=""+rs.getObject(3);
+        this.userTypeno = Integer.parseInt(rs.getObject(4)+"");
+        this.status=""+rs.getObject(5);
+        
+       }
     }
 
     public int getUserno() {

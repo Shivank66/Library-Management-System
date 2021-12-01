@@ -69,5 +69,14 @@ public static int totalFine(HttpSession session) throws SQLException// total fin
     }
     return 0;
 }
+public static int remainingFineBySiteUserno(int siteuserno,HttpSession session) throws SQLException
+{
+    int memberno= Member.getMembernoBySiteUserno(siteuserno,session);
+    //siteuserno=Integer.parseInt(LoginManager.getCurrentSiteUserno(session));
+    //PreparedStatement  statement=DbConfig.getPreparedStatement("select sum(fine+extrafine) from (select b.userid as Memberno, m.firstname ||' '|| m.lastname as name,b.fine,b.extrafine from bookissue b join members m on b.userid = m.memberno )",session);
+      //    ResultSet rs=statement.executeQuery();
+    int tfine=Payment.totalFineByMemberno(memberno, session) - Payment.totalPaymentByMemberno(memberno, session);
+    return tfine;
+}
     
 }

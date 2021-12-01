@@ -8,7 +8,7 @@
 <%@page import="bookpackage.SiteUser"%>
 <%@page import="bookpackage.Member"%>
 <%
-   
+    int memberno=0;
     String result="";
     String drop="";
     String alert="";
@@ -41,8 +41,10 @@
      userno=s.getUserno();
      Member m=new Member(usertypeno,nam1,nam2,address,mobile,dateR,dateE,userno);
      m.save(session);
+     memberno=m.getMemberno();
+     
     
-      alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Data Inserted");
+      alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Alloted Member Id <b>"+memberno+"</b>");
         }
          catch(Exception ex){
              System.err.println(ex);
@@ -111,7 +113,7 @@ window.onload= function () {
 }
     </script>
 </head>
-<body >
+<body class="container-fluid">
      <%@include file='menu.jsp'%>
 <!--!-->
 <form action="Member.jsp" method="post">

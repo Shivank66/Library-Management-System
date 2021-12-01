@@ -36,7 +36,7 @@ System.out.print(query);
 <body class="container-fluid" >
  <%@include file="menu.jsp"%>
  <div class="container minheight ">
-     <%=query%>
+     
     <div class="row table1">
         <%=table%>
     </div>

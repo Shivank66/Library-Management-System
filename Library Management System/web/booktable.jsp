@@ -4,7 +4,7 @@
        return;
 %>
 <%
-            String table=dbpackage.DbConfig.getTable("select * from books","Action","Edit","Bookupdate.jsp",session);
+            String table=dbpackage.DbConfig.getTable("select * from books","Action","Edit","Bookupdate2.jsp",session);
       %>
 
 <%@page import="bookpackage.Payment"%>
@@ -33,7 +33,7 @@
         <title> Payment</title>
         
     </head>
- <body>
+ <body class="container-fluid">
 
  <%@include file ="menu.jsp"%>
 
