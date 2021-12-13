@@ -1,4 +1,5 @@
 <%@include file="header.jsp"%>
+<title>Home Page</title>
     </head>
     <body class="container-fluid">
         

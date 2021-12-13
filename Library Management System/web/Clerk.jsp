@@ -62,6 +62,7 @@
     %>
 
 <%@include file="header.jsp"%>
+<title>Register Clerk </title>
 <style>
     .bg-light {
   background: #eef0f4;

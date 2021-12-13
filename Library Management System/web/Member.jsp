@@ -42,6 +42,7 @@
      Member m=new Member(usertypeno,nam1,nam2,address,mobile,dateR,dateE,userno);
      m.save(session);
      memberno=m.getMemberno();
+     Payment.pay(memberno,0,session);
      
     
       alert=validationspackage.AlertsAndMessages.showSuccess("SUCCESS!!","Alloted Member Id <b>"+memberno+"</b>");
@@ -65,6 +66,7 @@
     %>
 
 <%@include file="header.jsp"%>
+<title>Register Member</title>
 <style>
     .bg-light {
   background: #eef0f4;

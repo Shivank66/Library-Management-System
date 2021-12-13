@@ -1,5 +1,4 @@
 package loginpackage;
-
 import bookpackage.ActivityLog;
 import dbpackage.DbConfig;
 import java.sql.PreparedStatement;
@@ -18,9 +17,7 @@ public class LoginManager {
             ActivityLog ob=new ActivityLog(a,"Logged Out",session);
             ob.save(session);
             session.invalidate();
-            
             response.sendRedirect(loginpage);
-            
             return true;
         }
         catch(Exception ex)

@@ -1,6 +1,4 @@
-
 package dbpackage;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,14 +9,20 @@ import javax.servlet.http.HttpSession;
 import oracle.jdbc.OracleDriver;
 
 public class DbConfig {
-    //static int key=0;
+    //Class that manages the database connectivity for the project.
+    //We are currently using Oracle 10 XE(Express Edition) and the Oracle Thin Driver
+    //If database is to be changed then this is the only file that needs changing
+    
     public static PreparedStatement getPreparedStatement(String query,HttpSession session) throws SQLException
     {
+        //Create and return a PreparedStatement taking a query as input.
+        //We need the session because the connection is stored in the session
         return getConnection(session).prepareStatement(query);
     }
 public static Connection getConnection(HttpSession session) throws SQLException
 {
-    
+    //Create a connection, store it in the session. Since session is stored on a a per user basis
+    //we will be having one connection per user.
         if(session.getAttribute("connection")==null)
         {
     DriverManager.registerDriver(new OracleDriver());
@@ -27,10 +31,10 @@ public static Connection getConnection(HttpSession session) throws SQLException
     session.setAttribute("connection", connection);
         }
        return  (Connection)session.getAttribute("connection");
-                
 }
 public static String getTable(String query,String extra_column_name,String column_value, String jspfilename,HttpSession session) throws SQLException
     {
+        //Take a select query and return a table based on this and also takes name of extra column,with given value and link
         Connection connection=getConnection(session);
         PreparedStatement statement=connection.prepareStatement(query);
         String output="<table id=\"tableid\" name=\"tableid\" class='table-striped table-hover' >\n";

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import loginpackage.LoginManager;
 
 public class Book {
+    //Class that manages entry in book table and retrieving data from book table
     
 private int bookid,price,location;
 private String bookname,publisher,author,edition;

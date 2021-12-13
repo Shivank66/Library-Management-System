@@ -224,7 +224,7 @@ if (LoginManager.isUserLoggedIn(session))
 "</svg></div><div class=\" col-sm-5\">"+siteusername+"</div></div>\n"
         + "</button>\n" +
 "                            <div class=\"dropdown-content\">\n" +
-"                                  <a href=\"#\"> Fine : "+ finetopay+" Rs.</a>\n"+
+"                                  <a href=\"#\"> Fine : "+ finetopay +" Rs.</a>\n"+
 "                                <a href=\"ChangePassword.jsp\">Change Password</a>\n" +
 "                                <a href=\"logout.jsp\">Log Out</a>\n" +
 "                            </div>\n" +

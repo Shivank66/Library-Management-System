@@ -13,6 +13,7 @@
 
 
 <%@include file="header.jsp"%>
+<title>Member List</title>
 <%@page import="dbpackage.DbConfig"%>
 
         <title> Member list</title>

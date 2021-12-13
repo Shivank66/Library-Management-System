@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bookpackage;
 
 import dbpackage.DbConfig;
@@ -12,11 +8,9 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 import loginpackage.LoginManager;
 
-/**
- *
- * @author maury
- */
+
 public class Payment {
+    //Class that manages entry in payment table and retrieving data from payment table
 public static void pay(int memberno,int amount,HttpSession session) throws SQLException
 {   String date= BookIssue.getCurrentDate()+"";
     PreparedStatement  statement=DbConfig.getPreparedStatement("insert into payments values(paymentsequence.nextval,?,?,to_date(?,'YYYY-MM-DD'))",session);

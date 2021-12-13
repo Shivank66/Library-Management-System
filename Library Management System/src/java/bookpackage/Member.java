@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bookpackage;
 import dbpackage.DbConfig;
 import java.sql.PreparedStatement;
@@ -11,11 +7,10 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 import loginpackage.LoginManager;
 import validationspackage.MemberNotFoundException;
-/**
- *
- * @author maury
- */
+
 public class Member {
+        //Class that manages entry in member table and retrieving data from member table
+
     private int memberno=-1;
     private int usertypeno;
     private String firstName="";

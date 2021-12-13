@@ -44,7 +44,7 @@
 
 %>
 <%@include file="header.jsp"%>
-
+<title>Book Entry</title>
 
 </head>
 <body class="container-fluid">

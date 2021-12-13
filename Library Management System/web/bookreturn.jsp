@@ -143,6 +143,7 @@
             
         %>
 <%@include file="header.jsp"%>
+<title>Book Return</title>
 <script>
     function f()
 {

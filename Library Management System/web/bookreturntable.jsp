@@ -16,6 +16,7 @@
             String table=dbpackage.DbConfig.getTable("select * from bookissue where actualreturndate is null","Action","Return","bookreturn.jsp",session);
 %>
 <%@include file="header.jsp"%>
+<title>Book Return List</title>
 <script>
 function Search(textboxid,tableid,recordcounttext) {
         var input, filter, table, tr, td, i;

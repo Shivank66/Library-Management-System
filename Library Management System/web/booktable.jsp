@@ -28,9 +28,10 @@
 %>
 
 <%@include file="header.jsp"%>
+
 <%@page import="dbpackage.DbConfig"%>
 
-        <title> Payment</title>
+        <title> Book List</title>
         
     </head>
  <body class="container-fluid">

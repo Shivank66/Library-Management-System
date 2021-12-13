@@ -102,7 +102,7 @@
 
 %>
 <%@include file="header.jsp"%>
-
+<title>Book Update</title>
 
 </head>
 <body class="container-fluid">
@@ -134,7 +134,7 @@
 		<div class="col-md-7 form-group">
 			<div class="form-group">
 			Book ID<br>
-                        <input type="text"  class="input form-control " placeholder="Book ID" id="bid" name="bid" value="<%=key%>">
+                        <input type="text"  class="input form-control " placeholder="Book ID" id="bid" name="bid" value="<%=key%>" readonly>
 			</div>
 		</div>
                 <div class="col-md-1 form-group">

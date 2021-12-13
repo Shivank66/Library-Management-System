@@ -21,6 +21,7 @@ import static oracle.sql.DATE.getCurrentDate;
    
 
 public class BookIssue {
+    //Class that manages entry in bookIssue table and retrieving data from bookIssue table
     private int receipt;
     private int memberno;
     private int bookid;

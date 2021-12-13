@@ -87,6 +87,7 @@
     %>
 
 <%@include file="header.jsp"%>
+<title>Clerk Update</title>
 <style>
     .bg-light {
   background: #eef0f4;

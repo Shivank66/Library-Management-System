@@ -31,7 +31,7 @@
 <%@include file="header.jsp"%>
 <%@page import="dbpackage.DbConfig"%>
 
-        <title> Payment</title>
+        <title> Due List</title>
         
     </head>
  <body class="container-fluid">

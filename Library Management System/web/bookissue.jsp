@@ -96,6 +96,7 @@
             
         %>
 <%@include file="header.jsp"%>
+<title>Book Issue</title>
 </head>
 <body class="container-fluid">
 <%@include file="menu.jsp"%>
